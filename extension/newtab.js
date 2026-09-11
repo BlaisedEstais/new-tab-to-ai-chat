@@ -21,7 +21,8 @@
   // Off the critical path: refresh the cache (settings may have changed on another device, access may have
   // been granted or withdrawn) and repair the header rules. Started first so it also runs before a redirect:
   // the page stays alive until the next site answers.
-  const reconciled = import('./lib/config.js').then((config) => config.reconcile(page)).catch(() => false);
+  const config = import('./lib/config.js');
+  const reconciled = config.then((c) => c.reconcile(page)).catch(() => false);
 
   if (!page.embed) {
     location.replace(page.url);
@@ -54,6 +55,9 @@
     if (typeof data.icon === 'string' && data.icon.startsWith('https://')) icon.href = data.icon;
     if (typeof data.bg === 'string' && /^rgba?\([\d.,\s]+\)$/.test(data.bg)) localStorage.setItem(bgKey, data.bg);
   });
+
+  // While this tab shows the site, keep its preference cookies readable as the site updates them.
+  config.then(async (c) => c.watchCookies(await c.loadSettings())).catch(() => {});
 
   // If the cache was stale, reload once to show the right site (at most once every few seconds per tab).
   reconciled.then((stale) => {

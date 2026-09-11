@@ -157,6 +157,12 @@ test('the chat site’s own preference cookies work inside the new tab, the sess
     worker.evaluate(async (n) => (await chrome.cookies.get({ url: 'https://chatgpt.com/', name: n })).sameSite, name);
   assert.equal(await sameSite('stc_pref'), 'no_restriction', 'cookies the page reads must be readable in the frame');
   assert.equal(await sameSite('stc_session'), 'lax', 'HttpOnly cookies must be left alone');
+  // It stays readable while the new tab is open, even when the site sets it again as SameSite=Lax.
+  await worker.evaluate(() =>
+    chrome.cookies.set({ url: 'https://chatgpt.com/', name: 'stc_pref', value: '2', secure: true, sameSite: 'lax' }),
+  );
+  await page.waitForTimeout(500);
+  assert.equal(await sameSite('stc_pref'), 'no_restriction', 'cookies re-set while the tab is open must be relaxed again');
   // A cookie the page writes while inside the frame sticks (Chrome would drop it as SameSite=Lax).
   const kept = await frame.evaluate(() => {
     document.cookie = 'stc_written=1; path=/';

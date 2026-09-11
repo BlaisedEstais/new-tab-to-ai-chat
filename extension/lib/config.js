@@ -148,30 +148,45 @@ export async function syncRules(settings) {
 // app shows its consent banner every time, hides the sidebar and boots slowly. So for ChatGPT and Claude, the
 // cookies their JavaScript reads are marked SameSite=None. HttpOnly cookies, such as the session, are never
 // touched. cookie-bridge.js does the same for the cookies the page writes while it's inside the frame.
-export async function relaxCookies(settings) {
+const needsRelaxing = (c) => !c.httpOnly && c.sameSite !== 'no_restriction' && !c.partitionKey;
+
+const relax = (c) =>
+  chrome.cookies
+    .set({
+      url: `https://${c.domain.replace(/^\./, '')}${c.path}`,
+      name: c.name,
+      value: c.value,
+      domain: c.hostOnly ? undefined : c.domain,
+      path: c.path,
+      secure: true,
+      httpOnly: false,
+      sameSite: 'no_restriction',
+      expirationDate: c.session ? undefined : c.expirationDate,
+      storeId: c.storeId,
+    })
+    .catch(() => null);
+
+const relaxedHost = (settings) => {
   const provider = PROVIDERS[settings.provider];
-  if (!settings.keepCursor || !provider?.relaxCookies) return 0;
-  const cookies = await chrome.cookies.getAll({ domain: new URL(provider.url).hostname });
-  const readable = cookies.filter((c) => !c.httpOnly && c.sameSite !== 'no_restriction' && !c.partitionKey);
-  await Promise.all(
-    readable.map((c) =>
-      chrome.cookies
-        .set({
-          url: `https://${c.domain.replace(/^\./, '')}${c.path}`,
-          name: c.name,
-          value: c.value,
-          domain: c.hostOnly ? undefined : c.domain,
-          path: c.path,
-          secure: true,
-          httpOnly: false,
-          sameSite: 'no_restriction',
-          expirationDate: c.session ? undefined : c.expirationDate,
-          storeId: c.storeId,
-        })
-        .catch(() => null),
-    ),
-  );
+  return settings.keepCursor && provider?.relaxCookies ? new URL(provider.url).hostname : null;
+};
+
+export async function relaxCookies(settings) {
+  const host = relaxedHost(settings);
+  if (!host) return 0;
+  const readable = (await chrome.cookies.getAll({ domain: host })).filter(needsRelaxing);
+  await Promise.all(readable.map(relax));
   return readable.length;
+}
+
+/** While a new tab shows the site, cookies the site sets again as SameSite=Lax are relaxed right away. */
+export function watchCookies(settings) {
+  const host = relaxedHost(settings);
+  if (!host) return;
+  chrome.cookies.onChanged.addListener(({ removed, cookie }) => {
+    const domain = cookie.domain.replace(/^\./, '');
+    if (!removed && (domain === host || domain.endsWith(`.${host}`)) && needsRelaxing(cookie)) relax(cookie);
+  });
 }
 
 /**
