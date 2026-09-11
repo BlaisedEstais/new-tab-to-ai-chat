@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Store screenshot 1 (1280x800): the core promise. -->
+<!-- Store screenshot 1 (1280x800): the core promise. ?lang=fr renders the French version. -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -37,8 +37,8 @@
 </head>
 <body>
   <div class="headline">
-    <h1>Your AI chat in every new tab</h1>
-    <p>…and <em>your cursor stays in the address bar.</em></p>
+    <h1 data-t="h1">Your AI chat in every new tab</h1>
+    <p data-t="sub">…and <em>your cursor stays in the address bar.</em></p>
   </div>
 
   <div class="window light-browser">
@@ -57,13 +57,27 @@
       <div class="omnibox focused">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4-4"/></svg>
         <span class="caret"></span>
-        <span>Search Google or type a URL</span>
-        <div class="callout"><b>Cursor stays here</b> · type a search or a URL, as always</div>
+        <span data-t="placeholder">Search Google or type a URL</span>
+        <div class="callout" data-t="callout"><b>Cursor stays here</b> · type a search or a URL, as always</div>
       </div>
       <span class="ext"><img src="../../extension/icons/icon32.png" alt=""></span>
       <svg class="menu" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
     </div>
     <div class="content"></div>
   </div>
+
+  <script>
+    // ?lang=fr renders the French version (scripts/render-assets.mjs renders both).
+    const FR = {
+      h1: 'Votre chat IA dans chaque nouvel onglet',
+      sub: '…et <em>le curseur reste dans la barre d’adresse.</em>',
+      placeholder: 'Effectuez une recherche sur Google ou saisissez une URL',
+      callout: '<b>Le curseur reste ici</b> · tapez une recherche ou une URL, comme d’habitude',
+    };
+    if (new URLSearchParams(location.search).get('lang') === 'fr') {
+      document.documentElement.lang = 'fr';
+      for (const el of document.querySelectorAll('[data-t]')) el.innerHTML = FR[el.dataset.t];
+    }
+  </script>
 </body>
 </html>

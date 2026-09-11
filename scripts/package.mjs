@@ -1,10 +1,10 @@
-// Builds dist/straight-to-chat-<version>.zip from extension/: the file to upload to the Chrome Web Store,
+// Builds dist/new-tab-to-ai-chat-<version>.zip from extension/: the file to upload to the Chrome Web Store,
 // and to attach to GitHub releases.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 
 const { version } = JSON.parse(fs.readFileSync('extension/manifest.json', 'utf8'));
-const zip = `dist/straight-to-chat-${version}.zip`;
+const zip = `dist/new-tab-to-ai-chat-${version}.zip`;
 fs.mkdirSync('dist', { recursive: true });
 fs.rmSync(zip, { force: true });
 execFileSync('zip', ['-r', '-X', '-q', `../${zip}`, '.', '-x', '*.DS_Store', '-x', '_metadata/*'], {

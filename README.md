@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="store/icon-128.png" width="96" height="96" alt="Straight to Chat icon">
+  <img src="store/icon-128.png" width="96" height="96" alt="New Tab to AI Chat icon">
 </p>
 
-<h1 align="center">Straight to Chat</h1>
+<h1 align="center">New Tab to AI Chat</h1>
 
 <p align="center">
   <b>ChatGPT, Claude or Gemini in every new tab, and your cursor stays in the address bar.</b><br>
@@ -27,7 +27,7 @@ Opening a new tab is the fastest way to ask an AI something. But the usual ways 
 - **Redirect extensions** send the tab to the site, and the page grabs your cursor: you can't just type a Google search or a URL anymore.
 - **"AI new tab" dashboards** wrap the model in their own interface, often with an API key, ads or tracking, and without your history, projects or settings.
 
-**Straight to Chat** loads the real site, signed in with your usual account, right inside the new tab, while **the cursor stays in the address bar**. Press <kbd>⌘</kbd><kbd>T</kbd> / <kbd>Ctrl</kbd><kbd>T</kbd>, then either type a search or URL as always, or click into the chat.
+**New Tab to AI Chat** loads the real site, signed in with your usual account, right inside the new tab, while **the cursor stays in the address bar**. Press <kbd>⌘</kbd><kbd>T</kbd> / <kbd>Ctrl</kbd><kbd>T</kbd>, then either type a search or URL as always, or click into the chat.
 
 ## Features
 
@@ -41,11 +41,11 @@ Opening a new tab is the fastest way to ask an AI something. But the usual ways 
 
 ## Install
 
-**Chrome Web Store:** coming soon.
+**Chrome Web Store:** coming soon. Website: <https://blaisedestais.github.io/new-tab-to-ai-chat/>
 
 **Manually (2 minutes, Chrome 145 or later):**
 
-1. Download `straight-to-chat-<version>.zip` from the [latest release](https://github.com/BlaisedEstais/straight-to-chat/releases/latest) and unzip it (or `git clone` this repo).
+1. Download `new-tab-to-ai-chat-<version>.zip` from the [latest release](https://github.com/BlaisedEstais/new-tab-to-ai-chat/releases/latest) and unzip it (or `git clone` this repo).
 2. Open `chrome://extensions`, turn on **Developer mode** (top right), click **Load unpacked** and select the unzipped folder (the `extension` folder if you cloned the repo).
 3. The welcome page opens: pick ChatGPT, Claude or Gemini. Done. Press <kbd>⌘</kbd><kbd>T</kbd> / <kbd>Ctrl</kbd><kbd>T</kbd>.
 
@@ -59,7 +59,7 @@ Two one-time things worth knowing:
 Paste this into Claude Code, Codex or any coding agent:
 
 ```text
-Install the Chrome extension from https://github.com/BlaisedEstais/straight-to-chat:
+Install the Chrome extension from https://github.com/BlaisedEstais/new-tab-to-ai-chat:
 clone it, read AGENTS.md, then walk me through loading its extension/ folder
 in chrome://extensions (Developer mode → Load unpacked).
 ```
@@ -124,7 +124,7 @@ No. The content script reads only the page title, icon and background color, and
 Then the tab becomes chatgpt.com and the page takes keyboard focus: typing a search in the address bar needs an extra click or <kbd>⌘</kbd><kbd>L</kbd> every time. Staying on the extension's page is what keeps the cursor where you expect it.
 
 **A new tab says the site "refused to connect".**
-Make sure you're signed in (in a regular tab), and that the extension still has access to the site: puzzle-piece menu → Straight to Chat → allow on this site. Without access, the extension falls back to opening the site as a regular page.
+Make sure you're signed in (in a regular tab), and that the extension still has access to the site: puzzle-piece menu → New Tab to AI Chat → allow on this site. Without access, the extension falls back to opening the site as a regular page.
 
 ## Project status
 
@@ -136,4 +136,4 @@ If it saves you a few seconds a day, a ⭐ helps other people find it.
 
 [MIT](LICENSE).
 
-Straight to Chat is an independent project, not affiliated with, endorsed or sponsored by OpenAI, Anthropic or Google. ChatGPT is a trademark of OpenAI. Claude is a trademark of Anthropic. Gemini is a trademark of Google.
+New Tab to AI Chat is an independent project, not affiliated with, endorsed or sponsored by OpenAI, Anthropic or Google. ChatGPT is a trademark of OpenAI. Claude is a trademark of Anthropic. Gemini is a trademark of Google.

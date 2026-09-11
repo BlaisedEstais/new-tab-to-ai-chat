@@ -1,7 +1,7 @@
 {
-  "name": "straight-to-chat",
+  "name": "new-tab-to-ai-chat",
   "private": true,
-  "description": "ChatGPT or Claude in every new tab, while your cursor stays in the address bar.",
+  "description": "Claude, ChatGPT or Gemini in every new tab, while your cursor stays in the address bar.",
   "license": "MIT",
   "type": "module",
   "scripts": {

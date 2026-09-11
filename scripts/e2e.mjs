@@ -12,7 +12,7 @@ import path from 'node:path';
 
 const DEFAULTS = { provider: 'chatgpt', customUrl: '', keepCursor: true };
 const extensionPath = path.resolve('extension');
-const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'straight-to-chat-e2e-'));
+const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'new-tab-to-ai-chat-e2e-'));
 
 // A plain local website, to play "some other site" and "a custom URL".
 const server = http

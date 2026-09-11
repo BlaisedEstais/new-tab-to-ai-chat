@@ -1,5 +1,6 @@
 // Renders every image from its HTML source in store/src/ (deterministic: same input, same pixels).
 //   npm run assets
+// Screenshots come in English (store/*.png) and French (store/fr/*.png) for the localized store listings.
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,17 +19,25 @@ const jobs = [
   })),
 ];
 
-// Store images are added here when their source exists (screenshots 1280x800, promo tiles).
-for (const [file, width, height] of [
-  ['screenshot-1.html', 1280, 800],
-  ['screenshot-2.html', 1280, 800],
-  ['screenshot-3.html', 1280, 800],
-  ['promo-small.html', 440, 280],
-  ['promo-marquee.html', 1400, 560],
-  ['social-preview.html', 1280, 640],
+// Order matters: the promo images embed store/screenshot-1.png, so screenshots come first.
+for (const [file, width, height, languages] of [
+  ['screenshot-1.html', 1280, 800, ['en', 'fr']],
+  ['screenshot-2.html', 1280, 800, ['en', 'fr']],
+  ['screenshot-3.html', 1280, 800, ['en', 'fr']],
+  ['promo-small.html', 440, 280, ['en']],
+  ['promo-marquee.html', 1400, 560, ['en']],
+  ['social-preview.html', 1280, 640, ['en']],
 ]) {
-  if (fs.existsSync(path.join('store/src', file))) {
-    jobs.push({ url: src(file), out: [`store/${file.replace('.html', '.png')}`], width, height });
+  if (!fs.existsSync(path.join('store/src', file))) continue;
+  const name = file.replace('.html', '.png');
+  for (const language of languages) {
+    const english = language === 'en';
+    jobs.push({
+      url: src(file, english ? '' : `?lang=${language}`),
+      out: [english ? `store/${name}` : `store/${language}/${name}`],
+      width,
+      height,
+    });
   }
 }
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Store screenshot 3 (1280x800): setup and privacy. -->
+<!-- Store screenshot 3 (1280x800): setup and privacy. ?lang=fr renders the French version. -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -30,14 +30,33 @@
 </head>
 <body>
   <div class="copy">
-    <h1>Set up in one click</h1>
-    <p>Pick ChatGPT, Claude, Gemini or any URL. Change it anytime.</p>
+    <h1 data-t="h1">Set up in one click</h1>
+    <p data-t="sub">Pick ChatGPT, Claude, Gemini or any URL. Change it anytime.</p>
     <div class="points">
-      <div class="point"><div class="emoji">🔒</div><div><b>No tracking, no server</b><span>Nothing leaves your browser.</span></div></div>
-      <div class="point"><div class="emoji">🔑</div><div><b>No API key</b><span>It's the real site, with your own account.</span></div></div>
-      <div class="point"><div class="emoji">🧩</div><div><b>Open source</b><span>A few hundred lines, MIT-licensed.</span></div></div>
+      <div class="point"><div class="emoji">🔒</div><div><b data-t="p1">No tracking, no server</b><span data-t="p1s">Nothing leaves your browser.</span></div></div>
+      <div class="point"><div class="emoji">🔑</div><div><b data-t="p2">No API key</b><span data-t="p2s">It's the real site, with your own account.</span></div></div>
+      <div class="point"><div class="emoji">🧩</div><div><b data-t="p3">Open source</b><span data-t="p3s">A few hundred lines, MIT-licensed.</span></div></div>
     </div>
   </div>
-  <div class="shot"><img src="captures/welcome-light.png" alt=""></div>
+  <div class="shot"><img src="captures/welcome-light.png" data-fr="captures/welcome-light-fr.png" alt=""></div>
+
+  <script>
+    // ?lang=fr renders the French version (scripts/render-assets.mjs renders both).
+    const FR = {
+      h1: 'Prêt en un clic',
+      sub: 'Choisissez ChatGPT, Claude, Gemini ou une URL. Modifiable à tout moment.',
+      p1: 'Aucun pistage, aucun serveur',
+      p1s: 'Rien ne quitte votre navigateur.',
+      p2: 'Aucune clé API',
+      p2s: 'C’est le vrai site, avec votre propre compte.',
+      p3: 'Open source',
+      p3s: 'Quelques centaines de lignes, licence MIT.',
+    };
+    if (new URLSearchParams(location.search).get('lang') === 'fr') {
+      document.documentElement.lang = 'fr';
+      for (const el of document.querySelectorAll('[data-t]')) el.innerHTML = FR[el.dataset.t];
+      for (const img of document.querySelectorAll('img[data-fr]')) img.src = img.dataset.fr;
+    }
+  </script>
 </body>
 </html>

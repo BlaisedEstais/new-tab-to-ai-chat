@@ -1,10 +1,10 @@
 // Runs inside chatgpt.com and claude.ai, in the page's own JavaScript world, and only when the page is shown
-// inside this extension's new tab (newtab.js names that frame "straight-to-chat").
+// inside this extension's new tab (newtab.js names that frame "new-tab-to-ai-chat").
 // There, Chrome treats the page's script cookie access as third-party: cookies it writes with the default
 // SameSite=Lax are silently dropped, so choices like cookie consent or the sidebar state never stick.
 // Written from here, the page's cookies are marked SameSite=None; Secure instead, so it can keep them.
 (() => {
-  if (window.name !== 'straight-to-chat' || window === window.top || window.parent !== window.top) return;
+  if (window.name !== 'new-tab-to-ai-chat' || window === window.top || window.parent !== window.top) return;
   if (!location.ancestorOrigins?.[0]?.startsWith('chrome-extension://')) return;
 
   const relax = (cookie) =>

@@ -1,7 +1,7 @@
 {
-  "extName": { "message": "Straight to Chat — Nouvel onglet IA" },
-  "extShortName": { "message": "Straight to Chat" },
-  "extDescription": { "message": "ChatGPT, Claude ou Gemini dans chaque nouvel onglet, avec le curseur toujours dans la barre d'adresse. Open source, sans pistage." },
+  "extName": { "message": "New Tab to AI Chat — Nouvel onglet IA" },
+  "extShortName": { "message": "New Tab to AI Chat" },
+  "extDescription": { "message": "Le nouvel onglet de Chrome ouvre directement Claude, ChatGPT, Gemini ou un autre site, et le curseur reste dans la barre d'adresse." },
   "suggestions": { "message": "Essayer :" },
   "actionTitle": { "message": "Choisir ce qui s'ouvre dans les nouveaux onglets" },
   "tagline": { "message": "Votre chat IA dans chaque nouvel onglet. Le curseur reste dans la barre d'adresse." },

@@ -1,4 +1,4 @@
-// Straight to Chat: the new tab page.
+// New Tab to AI Chat: the new tab page.
 // Everything on the critical path is synchronous and local: read the cached choice, paint the site's
 // background, load the site in a full-page frame. The address bar keeps the cursor because the tab itself
 // never leaves this page: Chrome focuses the address bar on new tabs, and a framed site can't take it back.
@@ -43,14 +43,14 @@
   document.head.append(icon);
 
   const frame = document.createElement('iframe');
-  frame.name = 'straight-to-chat'; // how cookie-bridge.js recognizes the frame
+  frame.name = 'new-tab-to-ai-chat'; // how cookie-bridge.js recognizes the frame
   frame.src = page.url;
   frame.allow = page.allow ?? '';
   document.body.append(frame);
 
   // frame.js (running inside the site) reports the page's title, icon and background color.
   addEventListener('message', ({ source, origin, data }) => {
-    if (source !== frame.contentWindow || origin !== siteOrigin || data?.type !== 'straight-to-chat:page') return;
+    if (source !== frame.contentWindow || origin !== siteOrigin || data?.type !== 'new-tab-to-ai-chat:page') return;
     if (typeof data.title === 'string') document.title = data.title || page.title;
     if (typeof data.icon === 'string' && data.icon.startsWith('https://')) icon.href = data.icon;
     if (typeof data.bg === 'string' && /^rgba?\([\d.,\s]+\)$/.test(data.bg)) localStorage.setItem(bgKey, data.bg);

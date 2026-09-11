@@ -1,4 +1,4 @@
-# AGENTS.md: Straight to Chat
+# AGENTS.md: New Tab to AI Chat
 
 Guide for AI coding agents (Claude Code, Codex, Cursor…) that install, edit or fork this extension.
 
@@ -12,14 +12,15 @@ A Manifest V3 Chrome extension (Chrome 145+) that replaces the new tab page with
 |---|---|
 | `extension/` | The extension itself. This is the folder to load in `chrome://extensions` → **Load unpacked**. |
 | `extension/manifest.json` | Permissions, new tab override, toolbar popup, options page, content scripts. |
-| `extension/newtab.html`, `newtab.js` | The new tab page. Synchronous critical path: localStorage cache → iframe (named `straight-to-chat`). |
+| `extension/newtab.html`, `newtab.js` | The new tab page. Synchronous critical path: localStorage cache → iframe (named `new-tab-to-ai-chat`). |
 | `extension/lib/config.js` | Providers, settings, header rules (declarativeNetRequest), cookie relaxing, `reconcile()`. |
 | `extension/background.js` | Service worker: keeps rules and cookies in sync, opens the welcome page on install. |
 | `extension/frame.js` | Content script inside the built-in sites' frames: forwards the page title, icon and background color to the tab. |
-| `extension/cookie-bridge.js` | MAIN-world content script for chatgpt.com / claude.ai, active only in the `straight-to-chat` frame: cookies the page writes get `SameSite=None; Secure`. |
+| `extension/cookie-bridge.js` | MAIN-world content script for chatgpt.com / claude.ai, active only in the `new-tab-to-ai-chat` frame: cookies the page writes get `SameSite=None; Secure`. |
 | `extension/settings.html`, `popup.html`, `settings.js`, `settings.css` | Options/welcome page and toolbar popup (one shared script). UI language comes from the extension's own setting (English default), read from `_locales` directly. |
 | `extension/_locales/{en,fr}/messages.json` | UI strings, plus the manifest's name and description for the Chrome Web Store. |
-| `store/` | Chrome Web Store listing copy and images. `store/src/*.html` are the sources of every image. |
+| `store/` | Chrome Web Store listing copy and images (French screenshots in `store/fr/`). `store/src/*.html` are the sources of every image. |
+| `docs/` | The website, served by GitHub Pages at https://blaisedestais.github.io/new-tab-to-ai-chat/: landing page and privacy policy (keep `docs/privacy.html` in step with `PRIVACY.md`). |
 | `scripts/` | `e2e.mjs` (tests), `package.mjs` (zip), `capture-pages.mjs` and `render-assets.mjs` (store images). |
 
 ## Commands
@@ -27,7 +28,7 @@ A Manifest V3 Chrome extension (Chrome 145+) that replaces the new tab page with
 ```bash
 npm install        # once, dev only: Playwright 1.60 for tests and image rendering
 npm test           # end-to-end tests in Chromium with the extension loaded (HEADED=1 npm test to watch)
-npm run zip        # dist/straight-to-chat-<version>.zip, for the Chrome Web Store or a GitHub release
+npm run zip        # dist/new-tab-to-ai-chat-<version>.zip, for the Chrome Web Store or a GitHub release
 npm run capture    # refresh store/src/captures/ (signed-out chatgpt.com + the extension's own pages)
 npm run assets     # re-render extension/icons/*.png and store/*.png from store/src/*.html
 ```
@@ -36,7 +37,7 @@ npm run assets     # re-render extension/icons/*.png and store/*.png from store/
 
 Google Chrome only loads unpacked extensions through its own UI, so an agent can't finish alone (`--load-extension` stopped working in branded Chrome in version 137; it still works in Chromium and Chrome for Testing).
 
-1. Get the code: `git clone https://github.com/BlaisedEstais/straight-to-chat`, or download the zip from the latest release and unzip it.
+1. Get the code: `git clone https://github.com/BlaisedEstais/new-tab-to-ai-chat`, or download the zip from the latest release and unzip it.
 2. Ask the human to open `chrome://extensions`, turn on **Developer mode** (top right), click **Load unpacked** and pick the `extension/` folder.
 3. The welcome page opens: they pick ChatGPT, Claude or Gemini. Done.
 

@@ -131,7 +131,7 @@ export async function syncRules(settings) {
   }
   const wanted = [...hosts].map((host, i) => frameRule(i + 1, host));
   // One update at a time across all the extension's pages and its service worker.
-  return navigator.locks.request('straight-to-chat-rules', async () => {
+  return navigator.locks.request('new-tab-to-ai-chat-rules', async () => {
     const current = await chrome.declarativeNetRequest.getDynamicRules();
     if (shape(current) === shape(wanted)) return false;
     await chrome.declarativeNetRequest.updateDynamicRules({

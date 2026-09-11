@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy: New Tab to AI Chat</title>
+<meta name="description" content="Privacy policy of the New Tab to AI Chat Chrome extension: no data collection, no tracking, no server.">
+<link rel="icon" href="https://raw.githubusercontent.com/BlaisedEstais/new-tab-to-ai-chat/main/store/icon-128.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <article class="doc">
+    <h1>Privacy policy: New Tab to AI Chat</h1>
+    <p class="updated">Last updated: September 11, 2026</p>
+
+    <p>New Tab to AI Chat is a Chrome extension. It does not collect, sell or share any personal data. It has no server, and nothing it handles ever leaves your device.</p>
+    <ul>
+      <li><b>No analytics, no tracking, no ads, no remote code.</b></li>
+      <li><b>Your settings</b> (which site opens in new tabs, whether the cursor stays in the address bar, the interface language) are saved with Chrome's <code>chrome.storage.sync</code>, so Chrome can carry them between your own devices if you use Chrome sync. They never reach the author.</li>
+      <li><b>The site you choose</b> (Claude, ChatGPT, Gemini or your custom URL) loads directly from that site, exactly as if you had opened it yourself. Your use of it is covered by that site's own privacy policy.</li>
+      <li><b>Page title, icon and background color.</b> While claude.ai, chatgpt.com or gemini.google.com is shown inside the new tab, a small content script reads the page's title, icon and background color: the tab displays the conversation name, and the color is kept in the extension's local storage on your device so the next new tab can paint it before the site loads. The script doesn't read, store or send your conversations, and it does nothing in regular tabs.</li>
+      <li><b>Cookies of claude.ai and chatgpt.com.</b> Inside the new tab, Chrome hides these sites' own preference cookies (cookie consent, sidebar state…) from their JavaScript. So, for these two sites only, the extension changes one attribute (<code>SameSite</code>) of the cookies their JavaScript reads, and lets the page save the ones it writes there. It never reads cookie contents for its own use, never sends them anywhere, and never touches <code>HttpOnly</code> cookies such as your session.</li>
+      <li><b>Custom sites.</b> If you set a custom URL, the extension asks Chrome for access to that one site, and gives it back when you switch away from it.</li>
+    </ul>
+    <p>The full source code is public: <a href="https://github.com/BlaisedEstais/new-tab-to-ai-chat">github.com/BlaisedEstais/new-tab-to-ai-chat</a>. Questions: open an issue there.</p>
+
+    <h2 lang="fr">Politique de confidentialité (français)</h2>
+    <div lang="fr">
+      <p>New Tab to AI Chat est une extension Chrome. Elle ne collecte, ne vend et ne partage aucune donnée personnelle. Elle n'a pas de serveur, et rien de ce qu'elle manipule ne quitte votre appareil.</p>
+      <ul>
+        <li><b>Aucune statistique, aucun pistage, aucune publicité, aucun code distant.</b></li>
+        <li><b>Vos réglages</b> (le site qui s'ouvre dans les nouveaux onglets, le curseur dans la barre d'adresse, la langue de l'interface) sont enregistrés avec <code>chrome.storage.sync</code> : Chrome peut les synchroniser entre vos appareils si vous utilisez la synchronisation. Ils ne parviennent jamais à l'auteur.</li>
+        <li><b>Le site choisi</b> (Claude, ChatGPT, Gemini ou votre URL) se charge directement depuis ce site, exactement comme si vous l'aviez ouvert vous-même ; sa propre politique de confidentialité s'applique.</li>
+        <li><b>Titre, icône et couleur de fond.</b> Quand claude.ai, chatgpt.com ou gemini.google.com s'affiche dans le nouvel onglet, un petit script lit le titre, l'icône et la couleur de fond de la page : l'onglet affiche le nom de la conversation, et la couleur est gardée sur votre appareil pour le prochain nouvel onglet. Il ne lit, ne stocke et n'envoie jamais vos conversations, et ne fait rien dans les onglets normaux.</li>
+        <li><b>Cookies de claude.ai et chatgpt.com.</b> Dans le nouvel onglet, Chrome cache au JavaScript de ces sites leurs propres cookies de préférences (consentement, barre latérale…). Pour ces deux sites uniquement, l'extension modifie donc un attribut (<code>SameSite</code>) des cookies que leur JavaScript lit, et laisse la page enregistrer ceux qu'elle écrit. Elle ne lit jamais leur contenu pour son propre usage, ne les envoie nulle part et ne touche jamais aux cookies <code>HttpOnly</code>, comme votre session.</li>
+        <li><b>Sites personnalisés.</b> Si vous choisissez une URL personnalisée, l'extension demande à Chrome l'accès à ce seul site, et le rend quand vous en changez.</li>
+      </ul>
+    </div>
+  </article>
+  <footer><a href="./">New Tab to AI Chat</a> · <a href="https://github.com/BlaisedEstais/new-tab-to-ai-chat">Source code</a></footer>
+</body>
+</html>

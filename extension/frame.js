@@ -23,7 +23,7 @@
   const report = () => {
     pending = 0;
     const page = {
-      type: 'straight-to-chat:page',
+      type: 'new-tab-to-ai-chat:page',
       title: document.title,
       icon: document.querySelector('link[rel~="icon"]')?.href || '',
       bg: background(),

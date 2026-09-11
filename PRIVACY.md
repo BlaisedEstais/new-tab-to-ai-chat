@@ -1,8 +1,8 @@
-# Privacy policy: Straight to Chat
+# Privacy policy: New Tab to AI Chat
 
 _Last updated: September 11, 2026_
 
-Straight to Chat does not collect, sell or share any personal data. It has no server, and nothing it handles ever leaves your device.
+New Tab to AI Chat does not collect, sell or share any personal data. It has no server, and nothing it handles ever leaves your device.
 
 - **No analytics, no tracking, no ads, no remote code.**
 - **Your settings** (which site opens in new tabs, whether the cursor stays in the address bar, the interface language) are saved with Chrome's `chrome.storage.sync`, so Chrome can carry them between your own devices if you use Chrome sync. They never reach the author.
@@ -12,4 +12,4 @@ Straight to Chat does not collect, sell or share any personal data. It has no se
 - **Custom sites.** If you set a custom URL, the extension asks Chrome for access to that one site, and gives it back when you switch away from it.
 - **Permissions** are listed and explained in the [README](README.md#permissions).
 
-The full source code is public: <https://github.com/BlaisedEstais/straight-to-chat>
+The full source code is public: <https://github.com/BlaisedEstais/new-tab-to-ai-chat>
