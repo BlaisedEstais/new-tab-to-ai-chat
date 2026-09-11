@@ -1,0 +1,35 @@
+{
+  "extName": { "message": "Straight to Chat — Nouvel onglet IA" },
+  "extShortName": { "message": "Straight to Chat" },
+  "extDescription": { "message": "ChatGPT ou Claude dans chaque nouvel onglet, avec le curseur toujours dans la barre d'adresse. Open source, sans pistage." },
+  "actionTitle": { "message": "Choisir ce qui s'ouvre dans les nouveaux onglets" },
+  "tagline": { "message": "Votre chat IA dans chaque nouvel onglet. Le curseur reste dans la barre d'adresse." },
+
+  "welcomeTitle": { "message": "Pour bien démarrer" },
+  "welcomePick": { "message": "Choisissez ce qui s'ouvre dans vos nouveaux onglets, ci-dessous." },
+  "welcomeSignIn": { "message": "Connectez-vous une fois dans un onglet normal : les pages de connexion ne peuvent pas s'afficher dans le nouvel onglet." },
+  "welcomeKeep": { "message": "Au premier nouvel onglet, Chrome peut vous demander si vous gardez cette page Nouvel onglet : gardez-la." },
+  "welcomeFooter": { "message": "Facultatif : pour masquer le pied de page de Chrome en bas des nouveaux onglets, faites un clic droit dessus et choisissez de le masquer." },
+
+  "openInNewTabs": { "message": "Ouvrir dans chaque nouvel onglet" },
+  "customUrl": { "message": "URL personnalisée" },
+  "customSet": { "message": "Définir…" },
+  "customPlaceholder": { "message": "gemini.google.com" },
+  "customHint": { "message": "N'importe quel site, ou une page précise : un projet ChatGPT ou Claude, un GPT personnalisé, un chat auto-hébergé…" },
+  "save": { "message": "Enregistrer" },
+
+  "keepCursor": { "message": "Garder le curseur dans la barre d'adresse" },
+  "keepCursorHint": { "message": "Recommandé. Le site se charge dans le nouvel onglet et vous pouvez toujours taper une recherche ou une URL immédiatement. Désactivez pour ouvrir le site comme une page normale : la page prend le curseur, mais tout fonctionne, y compris les aperçus d'artefacts et de canvas." },
+  "keepCursorHintShort": { "message": "Tapez une recherche ou une URL tout de suite. Désactivé : le site s'ouvre comme une page normale." },
+
+  "saved": {
+    "message": "Enregistré. Ouvrez un nouvel onglet ($SHORTCUT$) pour essayer.",
+    "placeholders": { "shortcut": { "content": "$1", "example": "⌘T" } }
+  },
+  "invalidUrl": { "message": "Saisissez une adresse web valide, par exemple gemini.google.com." },
+  "accessDenied": { "message": "Enregistré. Sans accès à ce site, il ne peut pas s'afficher dans le nouvel onglet : il s'ouvrira comme une page normale." },
+
+  "moreOptions": { "message": "Toutes les options" },
+  "sourceLink": { "message": "Open source sur GitHub" },
+  "disclaimer": { "message": "Non affilié à OpenAI ni à Anthropic." }
+}

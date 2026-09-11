@@ -1,0 +1,42 @@
+<!doctype html>
+<!-- Source of the extension icon. Rendered to PNG by scripts/render-assets.mjs (?size=16|32|48|128).
+     Also embedded by the promo images with ?size=N&inset=0 (no transparent margin). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>html, body { margin: 0; background: transparent; } svg { display: block; }</style>
+</head>
+<body>
+<script>
+  const params = new URLSearchParams(location.search);
+  const size = Number(params.get('size')) || 128;
+
+  // The Chrome Web Store wants 96px of artwork in a 128px canvas; toolbar sizes use the whole canvas.
+  const inset = params.has('inset') ? Number(params.get('inset')) : size >= 128 ? 16 : size >= 48 ? 3 : 0;
+  const tile = size - inset * 2;
+  const radius = tile * 0.24;
+
+  // Chat bubble: Lucide "message-circle" (ISC license), filled. Circle r=9 at (12,12), tail to (2,22).
+  const scale = (tile * 0.64) / 20; // the bubble's bounding box is about 20 units wide
+  const x = inset + tile / 2 - 11.6 * scale;
+  const y = inset + tile / 2 - 12.4 * scale;
+  const dot = size <= 16 ? 1.9 : 1.45; // bigger dots survive the 16px downscale
+
+  document.body.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#8583ff"/>
+          <stop offset="1" stop-color="#4b44e0"/>
+        </linearGradient>
+      </defs>
+      <rect x="${inset}" y="${inset}" width="${tile}" height="${tile}" rx="${radius}" fill="url(#bg)"/>
+      ${size >= 32 ? `<rect x="${inset + 0.5}" y="${inset + 0.5}" width="${tile - 1}" height="${tile - 1}" rx="${radius - 0.5}" fill="none" stroke="rgb(255 255 255 / 0.18)"/>` : ''}
+      <g transform="translate(${x} ${y}) scale(${scale})">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="#fff"/>
+        ${[8, 12, 16].map((cx) => `<circle cx="${cx}" cy="12" r="${dot}" fill="#5b55ea"/>`).join('')}
+      </g>
+    </svg>`;
+</script>
+</body>
+</html>

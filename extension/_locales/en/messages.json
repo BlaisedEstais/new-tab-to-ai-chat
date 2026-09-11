@@ -1,0 +1,35 @@
+{
+  "extName": { "message": "Straight to Chat — AI New Tab" },
+  "extShortName": { "message": "Straight to Chat" },
+  "extDescription": { "message": "ChatGPT or Claude in every new tab, while your cursor stays in the address bar. Open source, no tracking." },
+  "actionTitle": { "message": "Choose what opens in new tabs" },
+  "tagline": { "message": "Your AI chat in every new tab. Your cursor stays in the address bar." },
+
+  "welcomeTitle": { "message": "Getting started" },
+  "welcomePick": { "message": "Pick what opens in your new tabs, below." },
+  "welcomeSignIn": { "message": "Sign in once in a regular tab: sign-in pages can't load inside the new tab." },
+  "welcomeKeep": { "message": "On your first new tab, Chrome may ask whether to keep this new tab page. Keep it." },
+  "welcomeFooter": { "message": "Optional: to hide Chrome's footer at the bottom of new tabs, right-click it and choose to hide it." },
+
+  "openInNewTabs": { "message": "Open in every new tab" },
+  "customUrl": { "message": "Custom URL" },
+  "customSet": { "message": "Set…" },
+  "customPlaceholder": { "message": "gemini.google.com" },
+  "customHint": { "message": "Any site, or a specific page: a ChatGPT or Claude project, a custom GPT, a self-hosted chat…" },
+  "save": { "message": "Save" },
+
+  "keepCursor": { "message": "Keep the cursor in the address bar" },
+  "keepCursorHint": { "message": "Recommended. The site loads inside the new tab, and you can still type a search or a URL right away. Turn it off to open the site as a regular page instead: the page takes the cursor, but everything works, including artifact and canvas previews." },
+  "keepCursorHintShort": { "message": "Type a search or URL right away. Off: open the site as a regular page." },
+
+  "saved": {
+    "message": "Saved. Open a new tab ($SHORTCUT$) to try it.",
+    "placeholders": { "shortcut": { "content": "$1", "example": "⌘T" } }
+  },
+  "invalidUrl": { "message": "Enter a valid web address, like gemini.google.com." },
+  "accessDenied": { "message": "Saved. Without access to this site it can't load inside the new tab, so it will open as a regular page." },
+
+  "moreOptions": { "message": "All options" },
+  "sourceLink": { "message": "Open source on GitHub" },
+  "disclaimer": { "message": "Not affiliated with OpenAI or Anthropic." }
+}

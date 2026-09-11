@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- Store screenshot 3 (1280x800): setup and privacy. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="shared.css">
+<style>
+  body {
+    width: 1280px; height: 800px;
+    background:
+      radial-gradient(700px 520px at 18% 30%, #e4e1ff 0%, transparent 70%),
+      linear-gradient(160deg, #f7f7fc 0%, #ebeaf6 100%);
+    color: #16151f;
+  }
+  .copy { position: absolute; left: 96px; top: 0; bottom: 0; width: 500px; display: flex; flex-direction: column; justify-content: center; }
+  .copy h1 { margin: 0; font-size: 46px; line-height: 1.1; font-weight: 700; letter-spacing: -0.025em; }
+  .copy > p { margin: 16px 0 34px; font-size: 21px; line-height: 1.4; color: #585670; }
+  .points { display: grid; gap: 14px; }
+  .point { display: flex; align-items: center; gap: 16px; padding: 16px 18px; border-radius: 14px; background: rgb(255 255 255 / 0.75); box-shadow: 0 1px 0 rgb(20 20 50 / 0.06), 0 8px 24px rgb(35 30 90 / 0.08); }
+  .point .emoji { font-size: 26px; line-height: 1; width: 32px; text-align: center; }
+  .point b { display: block; font-size: 17px; font-weight: 600; }
+  .point span { display: block; margin-top: 2px; font-size: 14.5px; color: #6a6880; }
+  .shot {
+    position: absolute; left: 640px; top: 70px; width: 560px; height: 660px;
+    border-radius: 16px; overflow: hidden; background: #f4f4f6;
+    box-shadow: 0 40px 90px rgb(35 30 90 / 0.25), 0 0 0 1px rgb(20 20 50 / 0.08);
+  }
+  .shot img { display: block; width: 100%; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <h1>Set up in one click</h1>
+    <p>Pick ChatGPT, Claude or a custom URL. Change it anytime.</p>
+    <div class="points">
+      <div class="point"><div class="emoji">🔒</div><div><b>No tracking, no server</b><span>Nothing leaves your browser.</span></div></div>
+      <div class="point"><div class="emoji">🔑</div><div><b>No API key</b><span>It's the real site, with your own account.</span></div></div>
+      <div class="point"><div class="emoji">🧩</div><div><b>Open source</b><span>A few hundred lines, MIT-licensed.</span></div></div>
+    </div>
+  </div>
+  <div class="shot"><img src="captures/welcome-light.png" alt=""></div>
+</body>
+</html>

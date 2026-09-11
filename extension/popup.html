@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Straight to Chat</title>
+  <link rel="stylesheet" href="settings.css">
+  <script type="module" src="settings.js"></script>
+</head>
+<body class="popup">
+  <header class="brand">
+    <img src="icons/icon32.png" alt="" width="22" height="22">
+    <h1 data-i18n="extShortName">Straight to Chat</h1>
+  </header>
+
+  <form id="form" autocomplete="off">
+    <fieldset>
+      <legend data-i18n="openInNewTabs"></legend>
+      <label class="option">
+        <input type="radio" name="provider" value="chatgpt">
+        <span class="name">ChatGPT</span><span class="host">chatgpt.com</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="provider" value="claude">
+        <span class="name">Claude</span><span class="host">claude.ai</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="provider" value="custom">
+        <span class="name" data-i18n="customUrl"></span><span class="host" id="customHost"></span>
+      </label>
+    </fieldset>
+
+    <label class="switch">
+      <input type="checkbox" id="keepCursor" role="switch">
+      <span class="text">
+        <b data-i18n="keepCursor"></b>
+        <small data-i18n="keepCursorHintShort"></small>
+      </span>
+      <span class="track" aria-hidden="true"></span>
+    </label>
+  </form>
+
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <footer>
+    <a href="settings.html" target="_blank" data-i18n="moreOptions"></a>
+    <span aria-hidden="true">·</span>
+    <a href="https://github.com/BlaisedEstais/straight-to-chat" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+</body>
+</html>

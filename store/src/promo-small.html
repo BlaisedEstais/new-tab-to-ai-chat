@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- Chrome Web Store small promo tile, 440x280. Guidance: little text, saturated colors, readable at half size. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 440px; height: 280px; overflow: hidden; }
+  body {
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background:
+      radial-gradient(56% 64% at 50% 36%, rgb(120 114 255 / 0.55), transparent 72%),
+      linear-gradient(160deg, #1e1b52 0%, #0d0c22 100%);
+  }
+  main { display: grid; justify-items: center; gap: 20px; }
+  iframe { display: block; width: 112px; height: 112px; border: 0; filter: drop-shadow(0 14px 26px rgb(0 0 0 / 0.4)); }
+  h1 { margin: 0; font-size: 31px; font-weight: 700; letter-spacing: -0.02em; }
+</style>
+</head>
+<body>
+  <main>
+    <iframe src="icon.html?size=112&inset=0" scrolling="no"></iframe>
+    <h1>Straight to Chat</h1>
+  </main>
+</body>
+</html>

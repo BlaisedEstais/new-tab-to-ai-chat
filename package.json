@@ -1,0 +1,16 @@
+{
+  "name": "straight-to-chat",
+  "private": true,
+  "description": "ChatGPT or Claude in every new tab, while your cursor stays in the address bar.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/e2e.mjs",
+    "zip": "node scripts/package.mjs",
+    "capture": "node scripts/capture-pages.mjs",
+    "assets": "node scripts/render-assets.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.60.0"
+  }
+}

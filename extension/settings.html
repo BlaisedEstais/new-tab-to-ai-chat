@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Straight to Chat</title>
+  <link rel="icon" href="icons/icon32.png">
+  <link rel="stylesheet" href="settings.css">
+  <script type="module" src="settings.js"></script>
+</head>
+<body class="page">
+  <main>
+    <header class="brand">
+      <img src="icons/icon128.png" alt="" width="48" height="48">
+      <div>
+        <h1 data-i18n="extShortName">Straight to Chat</h1>
+        <p data-i18n="tagline"></p>
+      </div>
+    </header>
+
+    <section id="welcome" class="card welcome" hidden>
+      <h2 data-i18n="welcomeTitle"></h2>
+      <ol>
+        <li data-i18n="welcomePick"></li>
+        <li>
+          <span data-i18n="welcomeSignIn"></span>
+          <span class="links">
+            <a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT ↗</a>
+            <a href="https://claude.ai/login" target="_blank" rel="noopener">Claude ↗</a>
+          </span>
+        </li>
+        <li data-i18n="welcomeKeep"></li>
+        <li data-i18n="welcomeFooter"></li>
+      </ol>
+    </section>
+
+    <form id="form" class="card" autocomplete="off">
+      <fieldset>
+        <legend data-i18n="openInNewTabs"></legend>
+        <label class="option">
+          <input type="radio" name="provider" value="chatgpt">
+          <span class="name">ChatGPT</span><span class="host">chatgpt.com</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="provider" value="claude">
+          <span class="name">Claude</span><span class="host">claude.ai</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="provider" value="custom">
+          <span class="name" data-i18n="customUrl"></span><span class="host" id="customHost"></span>
+        </label>
+        <div class="custom">
+          <input type="text" id="customUrl" inputmode="url" spellcheck="false" data-i18n-placeholder="customPlaceholder" aria-labelledby="customUrlLabel">
+          <button type="submit" data-i18n="save"></button>
+        </div>
+        <p class="hint" id="customUrlLabel" data-i18n="customHint"></p>
+      </fieldset>
+
+      <label class="switch">
+        <input type="checkbox" id="keepCursor" role="switch">
+        <span class="text">
+          <b data-i18n="keepCursor"></b>
+          <small data-i18n="keepCursorHint"></small>
+        </span>
+        <span class="track" aria-hidden="true"></span>
+      </label>
+    </form>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <footer>
+      <a href="https://github.com/BlaisedEstais/straight-to-chat" target="_blank" rel="noopener" data-i18n="sourceLink"></a>
+      <span aria-hidden="true">·</span>
+      <span data-i18n="disclaimer"></span>
+    </footer>
+  </main>
+</body>
+</html>
