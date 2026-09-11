@@ -1,7 +1,8 @@
 {
   "extName": { "message": "Straight to Chat — Nouvel onglet IA" },
   "extShortName": { "message": "Straight to Chat" },
-  "extDescription": { "message": "ChatGPT ou Claude dans chaque nouvel onglet, avec le curseur toujours dans la barre d'adresse. Open source, sans pistage." },
+  "extDescription": { "message": "ChatGPT, Claude ou Gemini dans chaque nouvel onglet, avec le curseur toujours dans la barre d'adresse. Open source, sans pistage." },
+  "suggestions": { "message": "Essayer :" },
   "actionTitle": { "message": "Choisir ce qui s'ouvre dans les nouveaux onglets" },
   "tagline": { "message": "Votre chat IA dans chaque nouvel onglet. Le curseur reste dans la barre d'adresse." },
 

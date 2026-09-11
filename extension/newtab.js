@@ -42,6 +42,7 @@
   document.head.append(icon);
 
   const frame = document.createElement('iframe');
+  frame.name = 'straight-to-chat'; // how cookie-bridge.js recognizes the frame
   frame.src = page.url;
   frame.allow = page.allow ?? '';
   document.body.append(frame);

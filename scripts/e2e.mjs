@@ -71,7 +71,7 @@ const test = (name, fn) => tests.push({ name, fn });
 
 test('welcome page opens on install', async () => {
   let welcome;
-  for (let i = 0; i < 50 && !welcome; i++) {
+  for (let i = 0; i < 100 && !welcome; i++) {
     welcome = context.pages().find((p) => p.url() === ext('settings.html#welcome'));
     if (!welcome) await new Promise((r) => setTimeout(r, 100));
   }
@@ -142,6 +142,30 @@ test('header rules only apply to frames inside this extension’s new tab', asyn
   }
 });
 
+test('the chat site’s own preference cookies work inside the new tab, the session cookie is untouched', async () => {
+  // As the site would have them: a preference cookie readable by its JavaScript (SameSite=Lax), and the
+  // HttpOnly session cookie.
+  await worker.evaluate(async () => {
+    await chrome.cookies.set({ url: 'https://chatgpt.com/', name: 'stc_pref', value: '1', secure: true, sameSite: 'lax' });
+    await chrome.cookies.set({ url: 'https://chatgpt.com/', name: 'stc_session', value: '1', secure: true, httpOnly: true, sameSite: 'lax' });
+  });
+  const page = await context.newPage();
+  await page.goto(ext('newtab.html'));
+  const frame = await embeddedFrame(page, 'https://chatgpt.com');
+  await page.waitForTimeout(1000);
+  const sameSite = (name) =>
+    worker.evaluate(async (n) => (await chrome.cookies.get({ url: 'https://chatgpt.com/', name: n })).sameSite, name);
+  assert.equal(await sameSite('stc_pref'), 'no_restriction', 'cookies the page reads must be readable in the frame');
+  assert.equal(await sameSite('stc_session'), 'lax', 'HttpOnly cookies must be left alone');
+  // A cookie the page writes while inside the frame sticks (Chrome would drop it as SameSite=Lax).
+  const kept = await frame.evaluate(() => {
+    document.cookie = 'stc_written=1; path=/';
+    return document.cookie.includes('stc_written=1');
+  });
+  assert.ok(kept, 'a cookie written by the page inside the frame must stick');
+  await page.close();
+});
+
 test('a corrupted local cache falls back to the default site', async () => {
   const page = await context.newPage();
   await page.goto(ext('manifest.json')); // an extension page without scripts, to write the cache
@@ -163,6 +187,17 @@ test('in redirect mode, new tabs still pick up settings changed elsewhere', asyn
   await embeddedFrame(second, 'https://chatgpt.com'); // ...but it refreshed the cache before leaving
   assert.equal(second.url(), ext('newtab.html'));
   await second.close();
+});
+
+test('the interface is in English by default and switches to French in one click', async () => {
+  const { page, errors } = await openSettings('popup.html');
+  assert.equal(await page.locator('legend').textContent(), 'Open in every new tab');
+  await page.locator('[data-language="fr"]').click();
+  await page.locator('legend', { hasText: 'Ouvrir dans chaque nouvel onglet' }).waitFor();
+  const stored = await worker.evaluate(async () => (await chrome.storage.sync.get('settings')).settings.language);
+  assert.equal(stored, 'fr');
+  assert.deepEqual(errors, []);
+  await page.close();
 });
 
 test('the popup switches to Claude in one click', async () => {

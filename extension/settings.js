@@ -11,20 +11,39 @@ import {
 } from './lib/config.js';
 
 const $ = (selector) => document.querySelector(selector);
-const t = (key, ...substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
 const inPopup = document.body.classList.contains('popup');
 const shortcut = /mac/i.test(navigator.userAgentData?.platform ?? navigator.platform) ? '⌘T' : 'Ctrl+T';
-
-document.documentElement.lang = chrome.i18n.getUILanguage();
-for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
-for (const el of document.querySelectorAll('[data-i18n-placeholder]')) el.placeholder = t(el.dataset.i18nPlaceholder);
-
 const form = $('#form');
 const customInput = $('#customUrl'); // options page only
 
+// UI strings follow the extension's own language setting (English by default), not the browser's, so they
+// come from the _locales files directly rather than through chrome.i18n.
+let strings = {};
+function t(key, ...substitutions) {
+  const entry = strings[key];
+  if (!entry) return key;
+  let text = entry.message;
+  for (const [name, { content }] of Object.entries(entry.placeholders ?? {})) {
+    text = text.replaceAll(`$${name.toUpperCase()}$`, substitutions[Number(content.slice(1)) - 1] ?? '');
+  }
+  return text;
+}
+
+async function applyLanguage(language) {
+  strings = await (await fetch(`_locales/${language}/messages.json`)).json();
+  document.documentElement.lang = language;
+  for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
+  for (const el of document.querySelectorAll('[data-i18n-placeholder]')) el.placeholder = t(el.dataset.i18nPlaceholder);
+  for (const button of document.querySelectorAll('[data-language]')) {
+    button.setAttribute('aria-pressed', String(button.dataset.language === language));
+  }
+}
+
 let settings = await loadSettings();
 let customAccess = settings.customUrl ? await hasAccess(settings.customUrl) : false;
+await applyLanguage(settings.language);
 render();
+document.body.removeAttribute('data-loading');
 
 if (location.hash === '#welcome') $('#welcome').hidden = false;
 if (location.hash === '#custom') customInput?.focus();
@@ -44,10 +63,23 @@ form.addEventListener('submit', (event) => {
   else update(patch);
 });
 
+document.addEventListener('click', ({ target }) => {
+  const button = target.closest('[data-language]');
+  if (button) setLanguage(button.dataset.language);
+  // Suggestions fill in the custom URL and save it right away (Chrome then asks for access to that site).
+  const chip = target.closest('.chip');
+  if (chip && customInput) {
+    customInput.value = chip.dataset.url;
+    form.requestSubmit();
+  }
+});
+
 chrome.storage.onChanged.addListener(async (changes, area) => {
   if (area !== 'sync' || !changes.settings) return;
+  const language = settings.language;
   settings = { ...DEFAULTS, ...changes.settings.newValue };
   customAccess = settings.customUrl ? await hasAccess(settings.customUrl) : false;
+  if (settings.language !== language) await applyLanguage(settings.language);
   render();
 });
 
@@ -64,6 +96,14 @@ function setKeepCursor(keepCursor) {
   const custom = settings.provider === 'custom' && settings.customUrl;
   if (!keepCursor || !custom || customAccess) return update({ keepCursor });
   withAccess(settings.customUrl, { keepCursor });
+}
+
+async function setLanguage(language) {
+  if (language === settings.language) return;
+  settings = { ...settings, language };
+  await applyLanguage(language);
+  render();
+  await saveSettings(settings);
 }
 
 // Showing a custom site inside the new tab needs access to that site. Chrome only shows the prompt when

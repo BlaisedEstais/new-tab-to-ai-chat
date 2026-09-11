@@ -84,6 +84,13 @@ button {
 button:hover { filter: brightness(1.08); }
 .hint { margin: 0; color: var(--muted); font-size: 13px; }
 
+.suggestions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; }
+.chip {
+  padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px;
+  font-size: 12.5px; font-weight: 500; color: var(--text); background: var(--card);
+}
+.chip:hover { filter: none; border-color: var(--accent); color: var(--accent); }
+
 .switch {
   position: relative; display: flex; align-items: flex-start; gap: 14px;
   margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); cursor: pointer;
@@ -107,7 +114,18 @@ button:hover { filter: brightness(1.08); }
 .status[data-kind='ok'] { color: var(--ok); }
 .status[data-kind='error'] { color: var(--error); }
 
-footer { display: flex; flex-wrap: wrap; gap: 6px; color: var(--muted); font-size: 13px; }
+footer { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; }
+
+/* Hidden until the UI strings are in place (no flash of empty labels). */
+[data-loading] { visibility: hidden; }
+
+.language { display: inline-flex; margin-left: auto; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.language button {
+  padding: 3px 9px; border: 0; border-radius: 0;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); background: transparent;
+}
+.language button:hover { filter: none; color: var(--text); }
+.language button[aria-pressed='true'] { color: var(--accent); background: var(--accent-soft); }
 
 /* Options and welcome page */
 body.page { padding: 56px 20px 48px; }

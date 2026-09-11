@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="settings.css">
   <script type="module" src="settings.js"></script>
 </head>
-<body class="popup">
+<body class="popup" data-loading>
   <header class="brand">
     <img src="icons/icon32.png" alt="" width="22" height="22">
     <h1 data-i18n="extShortName">Straight to Chat</h1>
@@ -22,6 +22,10 @@
       <label class="option">
         <input type="radio" name="provider" value="claude">
         <span class="name">Claude</span><span class="host">claude.ai</span>
+      </label>
+      <label class="option">
+        <input type="radio" name="provider" value="gemini">
+        <span class="name">Gemini</span><span class="host">gemini.google.com</span>
       </label>
       <label class="option">
         <input type="radio" name="provider" value="custom">
@@ -45,6 +49,9 @@
     <a href="settings.html" target="_blank" data-i18n="moreOptions"></a>
     <span aria-hidden="true">·</span>
     <a href="https://github.com/BlaisedEstais/straight-to-chat" target="_blank" rel="noopener">GitHub</a>
+    <div class="language" role="group" aria-label="Language / Langue">
+      <button type="button" data-language="en">EN</button><button type="button" data-language="fr">FR</button>
+    </div>
   </footer>
 </body>
 </html>

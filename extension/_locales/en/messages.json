@@ -1,7 +1,8 @@
 {
   "extName": { "message": "Straight to Chat — AI New Tab" },
   "extShortName": { "message": "Straight to Chat" },
-  "extDescription": { "message": "ChatGPT or Claude in every new tab, while your cursor stays in the address bar. Open source, no tracking." },
+  "extDescription": { "message": "ChatGPT, Claude or Gemini in every new tab, while your cursor stays in the address bar. Open source, no tracking." },
+  "suggestions": { "message": "Try:" },
   "actionTitle": { "message": "Choose what opens in new tabs" },
   "tagline": { "message": "Your AI chat in every new tab. Your cursor stays in the address bar." },
 

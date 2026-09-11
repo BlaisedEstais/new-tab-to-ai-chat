@@ -1,25 +1,34 @@
-// Settings, provider catalog, and the header rules that let the chosen site load inside the new tab.
+// Settings, provider catalog, and what lets the chosen site work inside the new tab: header rules and cookies.
 // Shared by the service worker, the settings UI and (lazily, off the critical path) the new tab page.
 
 // `bg` is only a first-run guess of each site's background: after that, the new tab uses the color the site
 // actually showed (see frame.js). `allow` lists the browser features the site may use inside the frame:
-// the voice mode needs the microphone, copy buttons need the clipboard.
+// the voice mode needs the microphone, copy buttons need the clipboard. `relaxCookies`: see relaxCookies().
 export const PROVIDERS = {
   chatgpt: {
     name: 'ChatGPT',
     url: 'https://chatgpt.com/',
     bg: { light: '#ffffff', dark: '#000000' },
     allow: 'microphone; clipboard-write; fullscreen',
+    relaxCookies: true,
   },
   claude: {
     name: 'Claude',
     url: 'https://claude.ai/new',
     bg: { light: '#fcfcfb', dark: '#151515' },
     allow: 'microphone; clipboard-write; fullscreen',
+    relaxCookies: true,
+  },
+  gemini: {
+    name: 'Gemini',
+    url: 'https://gemini.google.com/app',
+    bg: { light: '#ffffff', dark: '#131314' },
+    allow: 'microphone; clipboard-write; fullscreen',
+    relaxCookies: false, // Google's cookies are shared by every Google site: leave them alone
   },
 };
 
-export const DEFAULTS = { provider: 'chatgpt', customUrl: '', keepCursor: true };
+export const DEFAULTS = { provider: 'chatgpt', customUrl: '', keepCursor: true, language: 'en' };
 
 // newtab.js reads this synchronously on every new tab, so it must stay in step with chrome.storage.
 const CACHE_KEY = 'resolved';
@@ -31,7 +40,7 @@ export async function loadSettings() {
 
 export async function saveSettings(settings) {
   await chrome.storage.sync.set({ settings });
-  await syncRules(settings);
+  await Promise.all([syncRules(settings), relaxCookies(settings)]);
   cacheResolved(await resolve(settings));
 }
 
@@ -133,14 +142,46 @@ export async function syncRules(settings) {
   });
 }
 
+// Inside the new tab frame, Chrome hides the site's SameSite=Lax cookies from its own JavaScript (for scripts,
+// the frame counts as third-party), although the site's network requests still carry them. Chat apps keep
+// preferences in such cookies: cookie consent, sidebar state, "you're signed in" hints. Without them, the
+// app shows its consent banner every time, hides the sidebar and boots slowly. So for ChatGPT and Claude, the
+// cookies their JavaScript reads are marked SameSite=None. HttpOnly cookies, such as the session, are never
+// touched. cookie-bridge.js does the same for the cookies the page writes while it's inside the frame.
+export async function relaxCookies(settings) {
+  const provider = PROVIDERS[settings.provider];
+  if (!settings.keepCursor || !provider?.relaxCookies) return 0;
+  const cookies = await chrome.cookies.getAll({ domain: new URL(provider.url).hostname });
+  const readable = cookies.filter((c) => !c.httpOnly && c.sameSite !== 'no_restriction' && !c.partitionKey);
+  await Promise.all(
+    readable.map((c) =>
+      chrome.cookies
+        .set({
+          url: `https://${c.domain.replace(/^\./, '')}${c.path}`,
+          name: c.name,
+          value: c.value,
+          domain: c.hostOnly ? undefined : c.domain,
+          path: c.path,
+          secure: true,
+          httpOnly: false,
+          sameSite: 'no_restriction',
+          expirationDate: c.session ? undefined : c.expirationDate,
+          storeId: c.storeId,
+        })
+        .catch(() => null),
+    ),
+  );
+  return readable.length;
+}
+
 /**
- * Run by the new tab page once the site is already loading: refreshes the local cache (settings may have
- * changed on another device, access may have been granted or withdrawn) and repairs the rules.
- * Returns true if what the page shows is stale.
+ * Run by the new tab page as soon as the site starts loading: refreshes the local cache (settings may have
+ * changed on another device, access may have been granted or withdrawn), repairs the rules, and relaxes the
+ * cookies the site will read. Returns true if what the page shows is stale.
  */
 export async function reconcile(shown) {
   const settings = await loadSettings();
-  const [resolved, rules] = await Promise.allSettled([resolve(settings), syncRules(settings)]);
+  const [resolved, rules] = await Promise.allSettled([resolve(settings), syncRules(settings), relaxCookies(settings)]);
   if (resolved.status === 'fulfilled') cacheResolved(resolved.value);
   const now = resolved.status === 'fulfilled' ? resolved.value : shown;
   const rulesChanged = rules.status === 'fulfilled' && rules.value;

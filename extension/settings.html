@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="settings.css">
   <script type="module" src="settings.js"></script>
 </head>
-<body class="page">
+<body class="page" data-loading>
   <main>
     <header class="brand">
       <img src="icons/icon128.png" alt="" width="48" height="48">
@@ -27,6 +27,7 @@
           <span class="links">
             <a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT ↗</a>
             <a href="https://claude.ai/login" target="_blank" rel="noopener">Claude ↗</a>
+            <a href="https://gemini.google.com/app" target="_blank" rel="noopener">Gemini ↗</a>
           </span>
         </li>
         <li data-i18n="welcomeKeep"></li>
@@ -46,12 +47,24 @@
           <span class="name">Claude</span><span class="host">claude.ai</span>
         </label>
         <label class="option">
+          <input type="radio" name="provider" value="gemini">
+          <span class="name">Gemini</span><span class="host">gemini.google.com</span>
+        </label>
+        <label class="option">
           <input type="radio" name="provider" value="custom">
           <span class="name" data-i18n="customUrl"></span><span class="host" id="customHost"></span>
         </label>
         <div class="custom">
           <input type="text" id="customUrl" inputmode="url" spellcheck="false" data-i18n-placeholder="customPlaceholder" aria-labelledby="customUrlLabel">
           <button type="submit" data-i18n="save"></button>
+        </div>
+        <div class="suggestions">
+          <span data-i18n="suggestions"></span>
+          <button type="button" class="chip" data-url="https://grok.com/">Grok</button>
+          <button type="button" class="chip" data-url="https://www.perplexity.ai/">Perplexity</button>
+          <button type="button" class="chip" data-url="https://chat.mistral.ai/chat">Le Chat</button>
+          <button type="button" class="chip" data-url="https://chat.deepseek.com/">DeepSeek</button>
+          <button type="button" class="chip" data-url="https://copilot.microsoft.com/">Copilot</button>
         </div>
         <p class="hint" id="customUrlLabel" data-i18n="customHint"></p>
       </fieldset>
@@ -72,6 +85,9 @@
       <a href="https://github.com/BlaisedEstais/straight-to-chat" target="_blank" rel="noopener" data-i18n="sourceLink"></a>
       <span aria-hidden="true">·</span>
       <span data-i18n="disclaimer"></span>
+      <div class="language" role="group" aria-label="Language / Langue">
+        <button type="button" data-language="en">EN</button><button type="button" data-language="fr">FR</button>
+      </div>
     </footer>
   </main>
 </body>

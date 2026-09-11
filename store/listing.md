@@ -7,7 +7,7 @@ Copy-paste material for the [developer dashboard](https://chrome.google.com/webs
 Upload `dist/straight-to-chat-<version>.zip` (built by `npm run zip`). The name and summary come from the package:
 
 - **Name:** Straight to Chat — AI New Tab
-- **Summary:** ChatGPT or Claude in every new tab, while your cursor stays in the address bar. Open source, no tracking.
+- **Summary:** ChatGPT, Claude or Gemini in every new tab, while your cursor stays in the address bar. Open source, no tracking.
 
 ## Store listing tab
 
@@ -16,14 +16,15 @@ Upload `dist/straight-to-chat-<version>.zip` (built by `npm run zip`). The name 
 ```text
 Your AI chat in every new tab, and your cursor stays in the address bar.
 
-Straight to Chat opens ChatGPT or Claude (or any site you choose) every time you open a new tab. Unlike redirect extensions, it keeps the cursor in the address bar: type a search or a URL right away as usual, or click into the chat to ask something.
+Straight to Chat opens ChatGPT, Claude or Gemini (or any site you choose) every time you open a new tab. Unlike redirect extensions, it keeps the cursor in the address bar: type a search or a URL right away as usual, or click into the chat to ask something.
 
 WHY YOU'LL LIKE IT
 • The address bar keeps the cursor: search or type a URL instantly, like Chrome's default new tab.
-• Your real chat: the actual chatgpt.com or claude.ai, with your account, history, projects, voice mode and file uploads. Not a wrapper, no API key.
+• Your real chat: the actual chatgpt.com, claude.ai or gemini.google.com, with your account, history, sidebar, projects, voice mode and file uploads. Not a wrapper, no API key.
 • Fast: no framework, a few kilobytes. The site starts loading the moment the tab opens, over the background color it uses itself.
-• ChatGPT, Claude or any URL, switched in one click from the toolbar icon. Custom URLs work for specific pages too: a project, a custom GPT, a self-hosted chat on localhost.
+• ChatGPT, Claude, Gemini or any URL, switched in one click from the toolbar icon, with one-click suggestions for Grok, Perplexity, Le Chat, DeepSeek and Copilot. Custom URLs work for specific pages too: a project, a custom GPT, a self-hosted chat on localhost.
 • Tabs show your conversation's title.
+• English or French interface.
 • Private: no analytics, no ads, no remote code, no server. Open source (MIT).
 
 GOOD TO KNOW
@@ -32,11 +33,11 @@ GOOD TO KNOW
 • Chrome adds a small footer to new tab pages provided by extensions. Right-click it to hide it.
 
 HOW IT WORKS
-The extension's new tab page shows the chosen site in a full-page frame. To allow that, it removes the site's X-Frame-Options and Content-Security-Policy headers for that frame, only inside the extension's own new tab: never in your regular tabs, and never when another website tries to embed these sites.
+The extension's new tab page shows the chosen site in a full-page frame. To allow that, it removes the site's X-Frame-Options and Content-Security-Policy headers for that frame, only inside the extension's own new tab: never in your regular tabs, and never when another website tries to embed these sites. For ChatGPT and Claude, it also lets the site read its own preference cookies inside the new tab (cookie consent, sidebar state), without ever touching session cookies.
 
 Source code, permissions explained, privacy policy: https://github.com/BlaisedEstais/straight-to-chat
 
-Straight to Chat is an independent project, not affiliated with OpenAI or Anthropic. ChatGPT is a trademark of OpenAI. Claude is a trademark of Anthropic.
+Straight to Chat is an independent project, not affiliated with OpenAI, Anthropic or Google. ChatGPT is a trademark of OpenAI. Claude is a trademark of Anthropic. Gemini is a trademark of Google.
 ```
 
 **Description (French)**: add it under *Store listing → Language: French*.
@@ -44,14 +45,15 @@ Straight to Chat is an independent project, not affiliated with OpenAI or Anthro
 ```text
 Votre chat IA dans chaque nouvel onglet, et le curseur reste dans la barre d'adresse.
 
-Straight to Chat ouvre ChatGPT ou Claude (ou le site de votre choix) à chaque nouvel onglet. Contrairement aux extensions de redirection, le curseur reste dans la barre d'adresse : tapez une recherche ou une URL tout de suite, comme d'habitude, ou cliquez dans le chat pour poser une question.
+Straight to Chat ouvre ChatGPT, Claude ou Gemini (ou le site de votre choix) à chaque nouvel onglet. Contrairement aux extensions de redirection, le curseur reste dans la barre d'adresse : tapez une recherche ou une URL tout de suite, comme d'habitude, ou cliquez dans le chat pour poser une question.
 
 POURQUOI VOUS ALLEZ L'ADOPTER
 • Le curseur reste dans la barre d'adresse : recherche ou URL immédiatement, comme avec le nouvel onglet par défaut de Chrome.
-• Votre vrai chat : le vrai chatgpt.com ou claude.ai, avec votre compte, votre historique, vos projets, le mode vocal et l'envoi de fichiers. Pas un intermédiaire, pas de clé API.
+• Votre vrai chat : le vrai chatgpt.com, claude.ai ou gemini.google.com, avec votre compte, votre historique, la barre latérale, vos projets, le mode vocal et l'envoi de fichiers. Pas un intermédiaire, pas de clé API.
 • Rapide : aucun framework, quelques kilo-octets. Le site commence à charger dès l'ouverture de l'onglet, sur la couleur de fond qu'il utilise lui-même.
-• ChatGPT, Claude ou n'importe quelle URL, en un clic depuis l'icône de la barre d'outils. Les URL personnalisées acceptent aussi des pages précises : un projet, un GPT personnalisé, un chat auto-hébergé sur localhost.
+• ChatGPT, Claude, Gemini ou n'importe quelle URL, en un clic depuis l'icône de la barre d'outils, avec des suggestions en un clic pour Grok, Perplexity, Le Chat, DeepSeek et Copilot. Les URL personnalisées acceptent aussi des pages précises : un projet, un GPT personnalisé, un chat auto-hébergé sur localhost.
 • L'onglet affiche le titre de votre conversation.
+• Interface en français ou en anglais.
 • Respect de la vie privée : aucune statistique, aucune pub, aucun code distant, aucun serveur. Open source (MIT).
 
 BON À SAVOIR
@@ -60,11 +62,11 @@ BON À SAVOIR
 • Chrome ajoute un petit pied de page aux nouveaux onglets fournis par une extension : clic droit dessus pour le masquer.
 
 COMMENT ÇA MARCHE
-La page Nouvel onglet de l'extension affiche le site choisi dans un cadre plein écran. Pour cela, elle retire les en-têtes X-Frame-Options et Content-Security-Policy du site pour ce cadre, uniquement dans le nouvel onglet de l'extension : jamais dans vos onglets normaux, et jamais quand un autre site web essaie d'intégrer ces sites.
+La page Nouvel onglet de l'extension affiche le site choisi dans un cadre plein écran. Pour cela, elle retire les en-têtes X-Frame-Options et Content-Security-Policy du site pour ce cadre, uniquement dans le nouvel onglet de l'extension : jamais dans vos onglets normaux, et jamais quand un autre site web essaie d'intégrer ces sites. Pour ChatGPT et Claude, elle permet aussi au site de relire ses propres cookies de préférences dans le nouvel onglet (consentement aux cookies, barre latérale), sans jamais toucher aux cookies de session.
 
 Code source, permissions expliquées, politique de confidentialité : https://github.com/BlaisedEstais/straight-to-chat
 
-Straight to Chat est un projet indépendant, non affilié à OpenAI ni à Anthropic. ChatGPT est une marque d'OpenAI. Claude est une marque d'Anthropic.
+Straight to Chat est un projet indépendant, non affilié à OpenAI, Anthropic ni Google. ChatGPT est une marque d'OpenAI. Claude est une marque d'Anthropic. Gemini est une marque de Google.
 ```
 
 - **Category:** Productivity → Tools
@@ -79,7 +81,7 @@ Straight to Chat est un projet indépendant, non affilié à OpenAI ni à Anthro
 **Single purpose**
 
 ```text
-Replaces Chrome's new tab page with the AI chat site the user picks (ChatGPT, Claude or a custom URL), shown inside the new tab so the address bar keeps keyboard focus.
+Replaces Chrome's new tab page with the AI chat site the user picks (ChatGPT, Claude, Gemini or a custom URL), shown inside the new tab so the address bar keeps keyboard focus.
 ```
 
 **Permission justifications**
@@ -87,19 +89,25 @@ Replaces Chrome's new tab page with the AI chat site the user picks (ChatGPT, Cl
 - **declarativeNetRequestWithHostAccess**
 
   ```text
-  chatgpt.com and claude.ai send X-Frame-Options / Content-Security-Policy headers that prevent them from being displayed inside the extension's new tab page. A dynamic rule removes these two response headers only for sub_frame requests to the chosen site whose top-level frame is the extension's own new tab page (condition topDomains = the extension's ID). The headers are untouched in regular tabs and when other websites embed these sites.
+  The chat sites send X-Frame-Options / Content-Security-Policy headers that prevent them from being displayed inside the extension's new tab page. A dynamic rule removes these two response headers only for sub_frame requests to the chosen site whose top-level frame is the extension's own new tab page (condition topDomains = the extension's ID). The headers are untouched in regular tabs and when other websites embed these sites.
+  ```
+
+- **cookies**
+
+  ```text
+  Inside the new tab frame, Chrome hides chatgpt.com's and claude.ai's own SameSite=Lax cookies from their JavaScript, so the sites lose preferences such as cookie consent and the sidebar state. For these two sites only, the extension sets SameSite=None on the cookies their JavaScript can read (never on HttpOnly cookies such as the session). It never reads cookie values for its own use and never transmits them.
   ```
 
 - **storage**
 
   ```text
-  Saves the user's choice of new tab site and the "keep the cursor in the address bar" option.
+  Saves the user's settings: new tab site, "keep the cursor in the address bar" option, interface language.
   ```
 
 - **Host permissions**
 
   ```text
-  https://chatgpt.com/* and https://claude.ai/*: needed to display the site the user picked inside the new tab (the header rule only applies to sites the extension has access to), and for a content script that reads the page title, icon and background color so the tab shows the conversation name (kept on the device, never transmitted). Optional https://*/* and http://*/*: requested at runtime only for the single site the user enters as a custom new tab URL, and given back when they switch away from it.
+  https://chatgpt.com/*, https://claude.ai/* and https://gemini.google.com/*: needed to display the site the user picked inside the new tab (the header rule only applies to sites the extension has access to), for a content script that reads the page title, icon and background color so the tab shows the conversation name (kept on the device, never transmitted), and for the cookie adjustment described above (chatgpt.com and claude.ai only). Optional https://*/* and http://*/*: requested at runtime only for the single site the user enters as a custom new tab URL, and given back when they switch away from it.
   ```
 
 - **Remote code:** No, I am not using remote code.
