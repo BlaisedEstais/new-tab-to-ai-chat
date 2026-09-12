@@ -28,6 +28,8 @@ A Manifest V3 Chrome extension (Chrome 145+) that replaces the new tab page with
 ```bash
 npm install        # once, dev only: Playwright 1.60 for tests and image rendering
 npm test           # end-to-end tests in Chromium with the extension loaded (HEADED=1 npm test to watch)
+BROWSER=msedge npm test                     # the same tests in an installed Microsoft Edge
+BROWSER_PATH=/path/to/browser npm test      # …or in any Chromium browser (Brave, Comet…)
 npm run zip        # dist/new-tab-to-ai-chat-<version>.zip, for the Chrome Web Store or a GitHub release
 npm run capture    # refresh store/src/captures/ (signed-out chatgpt.com + the extension's own pages)
 npm run assets     # re-render extension/icons/*.png and store/*.png from store/src/*.html

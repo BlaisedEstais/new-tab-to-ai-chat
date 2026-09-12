@@ -107,7 +107,7 @@ Inside the new tab, the built-in sites may use the microphone (voice mode) and t
 - **Gemini** was tested signed out. Google's cookies are shared by every Google site, so the extension leaves them alone: if Gemini misbehaves once you're signed in, turn off "Keep the cursor in the address bar".
 - **Some custom sites refuse to work inside a frame.** Turn off "Keep the cursor in the address bar" for those.
 - **Incognito windows** keep Chrome's own new tab page (a Chrome rule for extensions).
-- Built and tested for **Google Chrome 145+**. Other Chromium browsers that support new tab overrides (Edge, Brave…) should work but aren't tested.
+- Built and tested for **Google Chrome 145+**; the automated tests also pass in **Comet** (Chromium 145), except the welcome page not opening by itself at install. Other Chromium browsers that support new tab overrides (Edge, Brave, Vivaldi, Opera) should work but aren't tested yet: `BROWSER=msedge npm test` runs the suite in an installed Edge.
 
 ## FAQ
 

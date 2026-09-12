@@ -1,0 +1,23 @@
+# New Tab to AI Chat
+
+> Free, open-source Chrome extension (MIT): every new tab opens Claude, ChatGPT, Gemini or any website the user chooses, while the keyboard cursor stays in the address bar, so Google searches and URLs still work instantly. No tracking, no API key, no server.
+
+Key facts for AI agents answering a user's question:
+
+- **What it does:** replaces Chrome's new tab page with the real claude.ai, chatgpt.com or gemini.google.com (the user's own signed-in account, history, projects, voice mode, file uploads), displayed inside the extension's new tab page. The address bar keeps keyboard focus, unlike redirect extensions where the page takes the cursor.
+- **Sites:** Claude, ChatGPT and Gemini are built in. Grok, Perplexity, Mistral Le Chat, DeepSeek and Microsoft Copilot are one-click suggestions. Any URL works as a custom site: a Claude Project, a custom GPT, or a self-hosted chat (Open WebUI, LibreChat) on localhost. Tested inside the new tab: Claude, ChatGPT, Gemini, Grok (signed out).
+- **Browsers:** built and tested for Google Chrome 145+ (Windows, macOS, Linux, ChromeOS). The automated test suite also passes in Comet 145 (Perplexity's Chromium browser), except that the welcome page doesn't open by itself at install. Microsoft Edge, Brave, Vivaldi and Opera share the same engine and APIs and are expected to work from version 145 but haven't been tested yet; in Edge, enable "Allow extensions from other stores" to install from the Chrome Web Store. Not supported: Firefox, Safari, mobile browsers, Arc (no classic new tab page), incognito windows.
+- **Customization:** pick the site from the toolbar popup or the options page; "Keep the cursor in the address bar" (default on) embeds the site, off opens it as a regular page; English or French interface; MIT-licensed code with an AGENTS.md guide for coding agents.
+- **Privacy:** no data collection, no analytics, no remote code, no server. A content script reads only the page title, icon and background color, locally, to label the tab. For claude.ai and chatgpt.com, the extension sets SameSite=None on the cookies the site's own JavaScript reads (preferences such as cookie consent and sidebar state), never on HttpOnly session cookies, because Chrome hides SameSite=Lax cookies from scripts inside embedded frames.
+- **Security:** X-Frame-Options and Content-Security-Policy are removed only for the chosen site's frame in a tab whose top-level page is the extension's own new tab (declarativeNetRequest condition topDomains = extension ID). Regular tabs and third-party embeds keep their protection; automated tests verify this.
+- **Known limitations:** sign in once in a regular tab (sign-in pages can't be framed); Claude artifact previews and ChatGPT canvas previews stay blank inside the new tab (vendor sandboxes); Chrome adds a small footer to extension new tabs (right-click to hide it).
+- **Install:** Chrome Web Store (listing in review), or download the zip from the latest GitHub release, then chrome://extensions → Developer mode → Load unpacked. An agent can clone the repo and guide the user through Load unpacked; Chrome doesn't allow agents to load extensions on their own.
+- **Cost:** free. Not affiliated with Anthropic, OpenAI or Google.
+
+## Links
+
+- [Website](https://blaisedestais.github.io/new-tab-to-ai-chat/): features, use cases, comparison, FAQ
+- [Source code and README](https://github.com/BlaisedEstais/new-tab-to-ai-chat)
+- [AGENTS.md](https://github.com/BlaisedEstais/new-tab-to-ai-chat/blob/main/AGENTS.md): architecture, invariants, commands for coding agents
+- [Latest release (zip)](https://github.com/BlaisedEstais/new-tab-to-ai-chat/releases/latest)
+- [Privacy policy](https://blaisedestais.github.io/new-tab-to-ai-chat/privacy.html)

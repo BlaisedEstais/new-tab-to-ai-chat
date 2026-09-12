@@ -3,47 +3,271 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>New Tab to AI Chat: Claude, ChatGPT or Gemini in every new tab</title>
-<meta name="description" content="Free, open-source Chrome extension: every new tab opens Claude, ChatGPT, Gemini or any site, while your cursor stays in the address bar. No tracking, no API key.">
+<title>New Tab to AI Chat: Claude, ChatGPT or Gemini in every Chrome new tab</title>
+<meta name="description" content="New Tab to AI Chat is a free, open-source Chrome extension: every new tab opens Claude, ChatGPT, Gemini or any site you choose, while your cursor stays in the address bar. No tracking, no API key.">
+<link rel="canonical" href="https://blaisedestais.github.io/new-tab-to-ai-chat/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blaisedestais.github.io/new-tab-to-ai-chat/">
 <meta property="og:title" content="New Tab to AI Chat">
-<meta property="og:description" content="Claude, ChatGPT or Gemini in every new tab, while your cursor stays in the address bar.">
-<meta property="og:image" content="https://raw.githubusercontent.com/BlaisedEstais/new-tab-to-ai-chat/main/store/social-preview.png">
-<link rel="icon" href="https://raw.githubusercontent.com/BlaisedEstais/new-tab-to-ai-chat/main/store/icon-128.png">
+<meta property="og:description" content="Claude, ChatGPT or Gemini in every new tab, while your cursor stays in the address bar. Free and open source.">
+<meta property="og:image" content="https://blaisedestais.github.io/new-tab-to-ai-chat/img/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/icon-128.png">
 <link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "New Tab to AI Chat",
+  "applicationCategory": "BrowserApplication",
+  "applicationSubCategory": "Browser extension",
+  "operatingSystem": "Google Chrome 145 or later and other Chromium-based browsers, on Windows, macOS, Linux and ChromeOS",
+  "description": "Free, open-source Chrome extension that opens Claude, ChatGPT, Gemini or any website you choose in every new tab, while the keyboard cursor stays in the address bar. No tracking, no API key, no server.",
+  "url": "https://blaisedestais.github.io/new-tab-to-ai-chat/",
+  "downloadUrl": "https://github.com/BlaisedEstais/new-tab-to-ai-chat/releases/latest",
+  "softwareVersion": "1.2.0",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "sameAs": ["https://github.com/BlaisedEstais/new-tab-to-ai-chat"],
+  "screenshot": [
+    "https://blaisedestais.github.io/new-tab-to-ai-chat/img/screenshot-1.jpg",
+    "https://blaisedestais.github.io/new-tab-to-ai-chat/img/screenshot-2.jpg",
+    "https://blaisedestais.github.io/new-tab-to-ai-chat/img/screenshot-3.jpg"
+  ],
+  "featureList": [
+    "Opens Claude, ChatGPT, Gemini or any URL in every new tab",
+    "Keeps the keyboard cursor in the address bar, so Google search and URLs still work instantly",
+    "Uses the real website with your own account: history, projects, sidebar, voice mode, file uploads",
+    "One-click switching from the toolbar, one-click suggestions for Grok, Perplexity, Le Chat, DeepSeek and Copilot",
+    "Custom URLs: a specific project, a custom GPT, a self-hosted chat on localhost",
+    "Tab title follows the conversation",
+    "English and French interface",
+    "No analytics, no tracking, no server, open source (MIT)"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is New Tab to AI Chat free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It's free and open source under the MIT license. There's no account, no subscription and no ads. You use the AI sites with your own account (free or paid plan)." } },
+    { "@type": "Question", "name": "Which AI assistants does it support?", "acceptedAnswer": { "@type": "Answer", "text": "Claude, ChatGPT and Gemini are built in. Grok, Perplexity, Mistral Le Chat, DeepSeek and Microsoft Copilot are one-click suggestions, and any other website works as a custom URL, including a self-hosted chat such as Open WebUI on localhost." } },
+    { "@type": "Question", "name": "Can I still search Google from the new tab?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. That's the point: the cursor stays in the address bar, so you type a search or a URL exactly as with Chrome's default new tab. Your default search engine isn't changed." } },
+    { "@type": "Question", "name": "Does it work in Microsoft Edge, Brave or other browsers?", "acceptedAnswer": { "@type": "Answer", "text": "It's built and tested for Google Chrome 145 or later, and its automated tests also pass in Comet, a Chromium browser. Microsoft Edge, Brave, Vivaldi and Opera share the same engine and extension APIs and are expected to work from version 145, though they haven't been tested on each yet. It doesn't work in Firefox or Safari, in mobile browsers, or in Arc, which has no classic new tab page." } },
+    { "@type": "Question", "name": "Does it read my conversations or collect data?", "acceptedAnswer": { "@type": "Answer", "text": "No. It has no server and collects nothing. A small script reads only the page title, icon and background color of the chat site, on your device, to label the tab." } },
+    { "@type": "Question", "name": "How is it different from other new tab extensions?", "acceptedAnswer": { "@type": "Answer", "text": "Redirect extensions send the tab to the site, which then takes the keyboard cursor. AI dashboard extensions show their own interface, often with an API key. New Tab to AI Chat shows the real site inside the new tab page itself, so you keep your account and history and the cursor stays in the address bar." } }
+  ]
+}
+</script>
 </head>
 <body>
   <header class="hero">
-    <img src="https://raw.githubusercontent.com/BlaisedEstais/new-tab-to-ai-chat/main/store/icon-128.png" width="88" height="88" alt="">
+    <img src="img/icon-128.png" width="88" height="88" alt="">
     <h1>New Tab to AI Chat</h1>
     <p class="lead">Every new tab opens <b>Claude, ChatGPT or Gemini</b>, and your cursor stays in the address bar.</p>
     <div class="cta">
-      <a class="button" href="https://github.com/BlaisedEstais/new-tab-to-ai-chat/releases/latest">Download for Chrome</a>
+      <a class="button" href="https://github.com/BlaisedEstais/new-tab-to-ai-chat/releases/latest">Download (free)</a>
       <a class="button ghost" href="https://github.com/BlaisedEstais/new-tab-to-ai-chat">View on GitHub</a>
     </div>
-    <p class="note">Free and open source. Chrome Web Store version coming soon.</p>
+    <p class="note">Free and open source (MIT) · Google Chrome and Chromium browsers · Chrome Web Store version in review</p>
   </header>
 
   <main>
-    <img class="shot" src="https://raw.githubusercontent.com/BlaisedEstais/new-tab-to-ai-chat/main/store/screenshot-1.png" width="1280" height="800" alt="A new Chrome tab showing ChatGPT, with the cursor still in the address bar">
+    <figure class="shot">
+      <img src="img/screenshot-1.jpg" width="2560" height="1600" alt="A new Chrome tab showing ChatGPT, with the cursor still in the address bar">
+      <figcaption>Every new tab opens your AI chat, and the cursor stays in the address bar.</figcaption>
+    </figure>
+
+    <section>
+      <h2>What it does</h2>
+      <p><b>New Tab to AI Chat</b> is a Chrome extension that replaces the new tab page with the AI assistant you use every day: <b>Claude</b>, <b>ChatGPT</b>, <b>Gemini</b> or any website you choose. Press <kbd>⌘</kbd><kbd>T</kbd> (Mac) or <kbd>Ctrl</kbd><kbd>T</kbd> (Windows, Linux, ChromeOS) and your chat is there, signed in, ready for a question.</p>
+      <p>Unlike other "new tab" extensions, it keeps the <b>keyboard cursor in the address bar</b>. If you wanted a Google search or a website instead, just type as usual: nothing changes about how you browse, you simply gain a chat window in every new tab.</p>
+    </section>
+
     <section class="features">
-      <div>
-        <h2>⌨️ Cursor in the address bar</h2>
-        <p>Type a search or a URL the moment the tab opens, like with Chrome's default new tab.</p>
+      <div><h3>⌨️ Cursor stays in the address bar</h3><p>Search Google or type a URL the moment the tab opens, like Chrome's default new tab.</p></div>
+      <div><h3>💬 Your real chat</h3><p>The actual claude.ai, chatgpt.com or gemini.google.com, with your account, history, sidebar, projects, voice mode and file uploads. No API key.</p></div>
+      <div><h3>⚡ Fast</h3><p>A few kilobytes, no framework. The site starts loading about 60 ms after the tab opens, over its own background color.</p></div>
+      <div><h3>🔀 Any site, one click</h3><p>Switch between Claude, ChatGPT and Gemini from the toolbar. One-click suggestions for Grok, Perplexity, Le Chat, DeepSeek and Copilot, or any URL.</p></div>
+      <div><h3>🏷️ Tabs you can recognize</h3><p>The tab shows your conversation's title and the site's icon, not a generic "New Tab".</p></div>
+      <div><h3>🔒 Zero tracking</h3><p>No account, no server, no analytics, no ads. Everything stays in your browser. Open source.</p></div>
+    </section>
+
+    <figure class="shot">
+      <img src="img/screenshot-2.jpg" width="2560" height="1600" loading="lazy" decoding="async" alt="The extension's toolbar popup to switch between ChatGPT, Claude, Gemini and a custom URL">
+      <figcaption>Switch between Claude, ChatGPT, Gemini or any URL from the toolbar, in one click.</figcaption>
+    </figure>
+
+    <section>
+      <h2>Why it's useful</h2>
+      <p>The new tab is the fastest way into the browser: people open dozens every day. Making it an AI chat turns "I'll ask ChatGPT later" into a two-second habit, without giving up anything:</p>
+      <ul>
+        <li><b>Chrome no longer lets you choose a new tab URL.</b> The setting was removed; only enterprise-managed devices can set one through a policy. An extension is the only way for everyone else.</li>
+        <li><b>Redirect extensions steal the cursor.</b> They send the tab to the site, which takes the keyboard focus: you can't just type a search anymore, you need an extra click or <kbd>⌘</kbd><kbd>L</kbd> every time.</li>
+        <li><b>"AI new tab" dashboards aren't your real assistant.</b> They wrap a model in their own interface, often with an API key, ads or tracking, and without your conversations, projects or settings.</li>
+        <li><b>Side panels and desktop apps are one more step.</b> They're great, but they're not where your hands already are when you open a tab.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Use cases</h2>
+      <ul class="columns">
+        <li><b>Quick questions while browsing</b>: definitions, conversions, "how do I…", without leaving your flow.</li>
+        <li><b>Writing</b>: draft an email, rephrase a paragraph, translate a message.</li>
+        <li><b>Coding</b>: paste an error, ask for a snippet, review a function.</li>
+        <li><b>Research and learning</b>: summarize, compare, explain a concept, with Perplexity or Gemini if you prefer search-first answers.</li>
+        <li><b>Voice</b>: open a tab and talk to ChatGPT, Claude or Gemini in voice mode.</li>
+        <li><b>A project in every tab</b>: point new tabs at a specific Claude Project or custom GPT that knows your work context.</li>
+        <li><b>Private or self-hosted AI</b>: Open WebUI, LibreChat or any local model interface on <code>http://localhost</code>, or your company's internal chat.</li>
+        <li><b>Switching assistants</b>: use Claude for writing this week, Gemini for research next week, in one click.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Who it's for</h2>
+      <p>People who use an AI assistant many times a day: developers, writers, students, researchers, founders, support and sales teams. Also privacy-minded users who want a small, auditable open-source tool rather than a closed "AI new tab" product, and teams who want every new tab to open their internal AI portal.</p>
+    </section>
+
+    <section>
+      <h2>How it compares</h2>
+      <div class="table">
+        <table>
+          <thead>
+            <tr><th></th><th>New Tab to AI Chat</th><th>Chrome's default new tab</th><th>Redirect extensions</th><th>AI dashboard extensions</th><th>Official ChatGPT / Claude extensions</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Your AI chat in every new tab</th><td>✅</td><td>❌</td><td>✅</td><td>✅ (their UI)</td><td>❌ (side panel)</td></tr>
+            <tr><th>Cursor stays in the address bar</th><td>✅</td><td>✅</td><td>❌</td><td>Varies</td><td>n/a</td></tr>
+            <tr><th>Real site, your account and history</th><td>✅</td><td>n/a</td><td>✅</td><td>Often ❌ (API key)</td><td>✅</td></tr>
+            <tr><th>Claude, ChatGPT, Gemini or any URL</th><td>✅</td><td>❌</td><td>✅</td><td>Varies</td><td>❌ (one each)</td></tr>
+            <tr><th>Open source, no tracking</th><td>✅</td><td>n/a</td><td>Varies</td><td>Rarely</td><td>❌ (closed source)</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div>
-        <h2>💬 Your real chat</h2>
-        <p>The actual site, signed in: history, sidebar, projects, voice mode, file uploads. No API key.</p>
-      </div>
-      <div>
-        <h2>🔒 Zero tracking</h2>
-        <p>No account, no server, no analytics. Everything stays in your browser.</p>
-      </div>
+    </section>
+
+    <figure class="shot">
+      <img src="img/screenshot-3.jpg" width="2560" height="1600" loading="lazy" decoding="async" alt="The welcome page: pick ChatGPT, Claude, Gemini or a custom URL, and the privacy promises">
+      <figcaption>Set up in one click: pick a site, keep the cursor in the address bar or not, English or French.</figcaption>
+    </figure>
+
+    <section>
+      <h2>Supported AI sites</h2>
+      <ul>
+        <li><b>Built in:</b> Claude (claude.ai), ChatGPT (chatgpt.com), Gemini (gemini.google.com).</li>
+        <li><b>One-click suggestions:</b> Grok (grok.com), Perplexity (perplexity.ai), Le Chat by Mistral (chat.mistral.ai), DeepSeek (chat.deepseek.com), Microsoft Copilot (copilot.microsoft.com).</li>
+        <li><b>Any URL:</b> a specific page (a Claude Project, a custom GPT), another assistant, or a self-hosted chat on your machine or network.</li>
+      </ul>
+      <p>Tested: Claude, ChatGPT and Gemini load inside the new tab, and Grok too (tested signed out). Sites protected by aggressive anti-bot checks can't be verified by automated tests; they load in a regular browser session. A few sites refuse to run inside a frame: for those, turn off "Keep the cursor in the address bar" and the site opens as a regular page.</p>
+    </section>
+
+    <section>
+      <h2>Browser compatibility</h2>
+      <ul>
+        <li><b>Google Chrome 145 or later</b> on Windows, macOS, Linux and ChromeOS: supported and tested, including an automated end-to-end test suite that runs in Chromium.</li>
+        <li><b>Comet</b> (Perplexity's Chromium browser, version 145): tested with the same automated suite. Everything passes, except that the welcome page doesn't open by itself at install; the settings stay one click away on the toolbar icon.</li>
+        <li><b>Microsoft Edge, Brave, Vivaldi, Opera</b> and other Chromium-based browsers: same engine and the same extension APIs, so the extension is expected to work from version 145, but it hasn't been tested on each of them yet. In Edge, install it from the Chrome Web Store after turning on <i>Allow extensions from other stores</i>, or load it unpacked.</li>
+        <li><b>Not supported:</b> Firefox and Safari (different extension systems), mobile browsers (Chrome on Android and iOS doesn't run extensions), Arc (it opens a command bar instead of a new tab page), and incognito windows (Chrome keeps its own new tab page there).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Customization</h2>
+      <ul>
+        <li>Choose Claude, ChatGPT, Gemini or a custom URL from the toolbar icon or the options page.</li>
+        <li><b>Keep the cursor in the address bar</b> (on by default) shows the site inside the new tab. Turn it off to open the site as a regular page instead: the page takes the cursor, but every feature works, including Claude artifact previews and ChatGPT canvas previews.</li>
+        <li>Interface in English (default) or French.</li>
+        <li>Everything else is code you can change: the extension is a few hundred lines of plain JavaScript, MIT-licensed, with a guide for AI coding agents (<a href="https://github.com/BlaisedEstais/new-tab-to-ai-chat/blob/main/AGENTS.md">AGENTS.md</a>). Fork it, add a provider, change the default.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <ol>
+        <li>The extension overrides Chrome's new tab page (Manifest V3, <code>chrome_url_overrides</code>). Chrome focuses the address bar on new tabs, and because the tab never navigates away, nothing takes that focus back.</li>
+        <li>The page reads your choice synchronously from a local cache and immediately loads the chosen site in a full-page frame: no network call and no waiting before the site starts loading.</li>
+        <li>Chat sites normally refuse to be shown inside another page (X-Frame-Options, CSP frame-ancestors). A <code>declarativeNetRequest</code> rule removes those two headers only for the site's frame in a tab whose top-level page is the extension's own new tab. In regular tabs, and when any other website tries to embed these sites, their protection stays intact.</li>
+        <li>Inside that frame, Chrome hides the site's own preference cookies from its JavaScript. For Claude and ChatGPT, the extension makes those readable (cookie consent, sidebar state, signed-in hints), without ever touching session cookies.</li>
+        <li>A small script sends the page title, icon and background color up to the tab, so tabs show your conversation names and the next new tab paints the right color before the site loads.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Privacy and security</h2>
+      <p>No analytics, no tracking, no ads, no remote code, no server: nothing is sent to the developer or to anyone else. Settings are saved in Chrome's storage and synced by Chrome between your own devices. Permissions are limited to claude.ai, chatgpt.com and gemini.google.com, plus the one custom site you pick, if any. Read the full <a href="privacy.html">privacy policy</a>, or the source code on <a href="https://github.com/BlaisedEstais/new-tab-to-ai-chat">GitHub</a>.</p>
+    </section>
+
+    <section>
+      <h2>Install</h2>
+      <ol>
+        <li><b>Chrome Web Store:</b> the listing is in review; the link will appear here.</li>
+        <li><b>Manually, in two minutes:</b> download the zip from the <a href="https://github.com/BlaisedEstais/new-tab-to-ai-chat/releases/latest">latest release</a> and unzip it. Open <code>chrome://extensions</code> (or <code>edge://extensions</code>), turn on <i>Developer mode</i>, click <i>Load unpacked</i> and select the folder. Pick your assistant on the welcome page.</li>
+        <li><b>With an AI coding agent:</b> ask Claude Code, Codex or Cursor to "install the Chrome extension from https://github.com/BlaisedEstais/new-tab-to-ai-chat: clone it, read AGENTS.md, then walk me through loading its extension folder".</li>
+      </ol>
+      <p>Sign in once to your AI site in a regular tab: sign-in pages can't load inside another page, and the new tab then uses the same session.</p>
+    </section>
+
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+
+      <h3>Is it free?</h3>
+      <p>Yes, free and open source (MIT). No account, no subscription, no ads. You use each AI site with your own account, on a free or paid plan.</p>
+
+      <h3>Which AI assistants does it support?</h3>
+      <p>Claude, ChatGPT and Gemini are built in. Grok, Perplexity, Le Chat, DeepSeek and Copilot are one-click suggestions. Any other website works as a custom URL.</p>
+
+      <h3>Can I still search Google from the new tab?</h3>
+      <p>Yes. The cursor stays in the address bar, so you type a search or a URL exactly as before. Your default search engine isn't changed.</p>
+
+      <h3>Does it work in Microsoft Edge, Brave, Opera or Vivaldi?</h3>
+      <p>It's built and tested for Google Chrome 145+, and its automated tests also pass in Comet, another Chromium browser. Edge, Brave, Opera and Vivaldi use the same Chromium engine and extension APIs, so it's expected to work there from version 145, though it hasn't been tested on each yet. In Edge, allow extensions from other stores to install it from the Chrome Web Store.</p>
+
+      <h3>Does it work with Grok?</h3>
+      <p>Yes, Grok is one of the one-click suggestions and loads inside the new tab. Like every custom site, it asks Chrome for access to grok.com the first time.</p>
+
+      <h3>Can I use a specific Claude Project or custom GPT?</h3>
+      <p>Yes: paste its URL as the custom URL. The same works for a temporary or specific chat page, or a self-hosted chat such as Open WebUI.</p>
+
+      <h3>Does it read my conversations?</h3>
+      <p>No. It only reads the page title, icon and background color of the chat site, on your device, to label the tab. There's no server to send anything to.</p>
+
+      <h3>Does it change my cookies?</h3>
+      <p>For Claude and ChatGPT only, it changes one attribute (SameSite) of the preference cookies their own JavaScript reads, so that consent choices and the sidebar state work inside the new tab. It never reads cookie values for itself and never touches session cookies.</p>
+
+      <h3>Is removing security headers safe?</h3>
+      <p>The headers are removed only for the chosen site's frame inside the extension's own new tab, a page no website can load. Any other page trying to embed these sites is still blocked, and regular tabs are untouched. Automated tests check both.</p>
+
+      <h3>Why do I have to sign in in a regular tab?</h3>
+      <p>Sign-in pages (OpenAI, Anthropic, Google) refuse to be displayed inside another page, a sound security choice. Sign in once in a regular tab; the new tab then uses the same session.</p>
+
+      <h3>Why are Claude artifacts or ChatGPT canvas previews blank?</h3>
+      <p>They run in the sites' own sandboxed frames, which only allow the sites themselves as parents. Open the chat in a regular tab (Cmd/Ctrl-click it in the sidebar), or turn off "Keep the cursor in the address bar".</p>
+
+      <h3>Does it slow Chrome down?</h3>
+      <p>No. It weighs a few kilobytes, runs nothing in the background, and the site starts loading about 60 ms after the tab opens.</p>
+
+      <h3>Does it work in incognito, on mobile, in Firefox or Safari?</h3>
+      <p>No. Chrome keeps its own new tab page in incognito windows, mobile browsers don't run extensions, and Firefox and Safari use different extension systems.</p>
+
+      <h3>How do I get Chrome's normal new tab back?</h3>
+      <p>Disable or remove the extension in <code>chrome://extensions</code>. Nothing else in Chrome is changed.</p>
+
+      <h3>Can I hide the footer Chrome adds at the bottom?</h3>
+      <p>Yes. Chrome adds a small footer to new tab pages provided by extensions; right-click it and choose to hide it.</p>
+
+      <h3>Is it affiliated with OpenAI, Anthropic or Google?</h3>
+      <p>No. It's an independent open-source project.</p>
+
+      <h3>Can I contribute or change it?</h3>
+      <p>Yes. Issues and pull requests are welcome on GitHub, and you can fork it freely. AGENTS.md explains the code to AI coding agents.</p>
     </section>
   </main>
 
   <footer>
-    <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/BlaisedEstais/new-tab-to-ai-chat">Source code</a> ·
-    Not affiliated with Anthropic, OpenAI or Google.
+    <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/BlaisedEstais/new-tab-to-ai-chat">Source code</a> · <a href="llms.txt">llms.txt</a><br>
+    New Tab to AI Chat is an independent project, not affiliated with Anthropic, OpenAI or Google. Claude is a trademark of Anthropic, ChatGPT of OpenAI and Gemini of Google.
   </footer>
 </body>
 </html>

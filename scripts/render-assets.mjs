@@ -54,4 +54,15 @@ for (const job of jobs) {
     console.log(`  ${out}`);
   }
 }
+
+// The website (docs/) shows the screenshots at 2x, as JPEG, so they stay sharp on high-density screens.
+fs.mkdirSync('docs/img', { recursive: true });
+const hiDpi = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1280, height: 800 } });
+for (const n of [1, 2, 3]) {
+  await hiDpi.goto(src(`screenshot-${n}.html`));
+  await hiDpi.evaluate(() => document.fonts.ready);
+  await hiDpi.screenshot({ path: `docs/img/screenshot-${n}.jpg`, type: 'jpeg', quality: 88 });
+  console.log(`  docs/img/screenshot-${n}.jpg`);
+}
+for (const file of ['icon-128.png', 'social-preview.png']) fs.copyFileSync(`store/${file}`, `docs/img/${file}`);
 await browser.close();

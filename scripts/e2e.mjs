@@ -25,8 +25,11 @@ const server = http
   .listen(0);
 const local = `http://127.0.0.1:${server.address().port}`;
 
+// Other Chromium browsers: BROWSER=msedge npm test (installed Edge), or BROWSER_PATH=/path/to/browser npm test.
 const context = await chromium.launchPersistentContext(userDataDir, {
-  channel: 'chromium',
+  ...(process.env.BROWSER_PATH
+    ? { executablePath: process.env.BROWSER_PATH }
+    : { channel: process.env.BROWSER || 'chromium' }),
   headless: !process.env.HEADED,
   args: [`--disable-extensions-except=${extensionPath}`, `--load-extension=${extensionPath}`],
 });
